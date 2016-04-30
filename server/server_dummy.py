@@ -5,6 +5,7 @@ from server_structure_dummy import MessageServer
 import struct
 import thread
 import json
+import sys, getopt
 
 def listener(clientsocket, clientaddr, GameServer):
 	ms = MessageServer(clientsocket, clientaddr, GameServer)
@@ -20,7 +21,7 @@ def main(argv):
     serversocket.bind(addr)
     serversocket.listen(5)
 
-    gs = GameServer(argv[1])
+    gs = GameServer(int(argv[1]))
 
     while 1:
         print "Server is listening for connections\n"
@@ -31,4 +32,4 @@ def main(argv):
 
 
 if __name__ == '__main__':
-	main()
+	main(sys.argv)
