@@ -1,5 +1,4 @@
 from player import *
-from room import *
 
 class Game:
 	def __init__ (self):
