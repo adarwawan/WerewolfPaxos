@@ -68,7 +68,7 @@ class GameServer:
 		for x in self.players:
 			if ( x == "" ):
 				self.players[i] = Player(i, address, iport, username, 1 if (i % 3 > 0) else 0)
-				self.username[i] = username
+				self.usernames[i] = username
 				self.n_online += 1
 				self.game.addPlayer(i, 1 if (i % 3 > 0) else 0)
 				return i
@@ -77,7 +77,7 @@ class GameServer:
 
 	def delPlayer (self, pid):
 		self.players[pid] = ""
-		self.username[pid] = ""
+		self.usernames[pid] = ""
 		self.n_online -= 1
 
 	def disconnectPlayer (self, pid):
