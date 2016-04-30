@@ -160,7 +160,7 @@ class MessageServer:
 		if msg['method'] == 'join':
 			if msg['username'] == "":
 				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
-			if msg['username'] in GameServer.getUsernameList():
+			elif msg['username'] in GameServer.getUsernameList():
 				index = GameServer.getUsernameList().index(msg['username'])
 				if not GameServer.getPlayerList()[index].isOnline():
 					self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
@@ -168,7 +168,7 @@ class MessageServer:
 					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
 			elif GameServer.getGame().isStarted():
 				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please wait, game is currently running"}))
-			elif "" not in self.usernames:
+			elif "" not in GameServer.getUsernameList():
 				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
 			else:
 				self.clientid = GameServer.newPlayer(msg['username'], clientsocket, clientaddr)
@@ -259,34 +259,34 @@ class MessageServer:
 		else:
 			self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"invalid request"}))
 
-	def objectToJSON (self, request, GameServer):
-		class message(object):
-			def __init__(self):
-				self.type = "response"
-				self.object = "undefined"
-				self.data = []
+	# def objectToJSON (self, request, GameServer):
+	# 	class message(object):
+	# 		def __init__(self):
+	# 			self.type = "response"
+	# 			self.object = "undefined"
+	# 			self.data = []
 
-		msgobj = message()
+	# 	msgobj = message()
 
-		if (request == "rooms"):
-			msgobj.object = "rooms"
-			for room in GameServer.getRoomList():
-				if ( room != "" ):
-					msgobj.data.append({"id": room[0].getID(), "name":room[0].getName()})
+	# 	if (request == "rooms"):
+	# 		msgobj.object = "rooms"
+	# 		for room in GameServer.getRoomList():
+	# 			if ( room != "" ):
+	# 				msgobj.data.append({"id": room[0].getID(), "name":room[0].getName()})
 
-		elif (request == "players"):
-			msgobj.object = "players"
-			for player in GameServer.getRoomList()[GameServer.getPlayerList()[self.clientid].getRoomID()][1].getPlayerList():
-				if GameServer.getPlayerByPID(player) != "":
-					msgobj.data.append({"id":player, "name": GameServer.getPlayerByPID(player).getName(), "char":GameServer.getPlayerByPID(player).getChar()})
+	# 	elif (request == "players"):
+	# 		msgobj.object = "players"
+	# 		for player in GameServer.getRoomList()[GameServer.getPlayerList()[self.clientid].getRoomID()][1].getPlayerList():
+	# 			if GameServer.getPlayerByPID(player) != "":
+	# 				msgobj.data.append({"id":player, "name": GameServer.getPlayerByPID(player).getName(), "char":GameServer.getPlayerByPID(player).getChar()})
 
-		elif (request == "board"):
-			msgobj.object = "board"
-			for b in GameServer.getRoomList()[GameServer.getPlayerList()[self.clientid].getRoomID()][1].getBoard():
-				msgobj.data.append(b)
+	# 	elif (request == "board"):
+	# 		msgobj.object = "board"
+	# 		for b in GameServer.getRoomList()[GameServer.getPlayerList()[self.clientid].getRoomID()][1].getBoard():
+	# 			msgobj.data.append(b)
 
-		msg = json.dumps(msgobj.__dict__)
-		return msg
+	# 	msg = json.dumps(msgobj.__dict__)
+	# 	return msg
 
 	def sendResponse (self, clientsocket, msg):
 		print msg
