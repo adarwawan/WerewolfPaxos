@@ -65,16 +65,16 @@ class MessageServer:
 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":"waiting for other player to start"}))
 
 		elif msg['method'] == 'client_address':
-			self.sendResponse({"status":"ok", "clients":"lst", "description":"list of clients retrieved"})
+			self.sendResponse(clientid, json.dumps({"status":"ok", "clients":"lst", "description":"list of clients retrieved"}))
 
 		elif msg['method'] == 'prepare_proposal':
-			self.sendResponse({"status":"ok", "description":"prepared"})
+			self.sendResponse(clientid, json.dumps({"status":"ok", "description":"prepared"}))
 
 		elif msg['method'] == 'vote_result_werewolf':
-			self.sendResponse({"status":"ok", "description":"werewolf killed"})
+			self.sendResponse(clientid, json.dumps({"status":"ok", "description":"werewolf killed"}))
 
 		elif msg['method'] == 'vote_result_civilian':
-			self.sendResponse({"status":"ok", "description":"civilian killed"})
+			self.sendResponse(clientid, json.dumps({"status":"ok", "description":"civilian killed"}))
 
 	def sendResponse (self, clientsocket, msg):
 		print msg
