@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD:client/WerewolfClient/WerewolfClient.pro.user.a46ee68
 <!-- Written by QtCreator 3.6.1, 2016-04-29T21:45:34. -->
+=======
+<!-- Written by QtCreator 3.6.1, 2016-04-30T21:01:05. -->
+>>>>>>> 64ccda774c13e64f771d5fb1a72397ca1782c418:client/WerewolfClient/WerewolfClient.pro.user
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>

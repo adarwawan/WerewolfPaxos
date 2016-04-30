@@ -28,8 +28,6 @@ void login::on_buttonPlay_clicked()
 
     connection.doConnect(server_ip, server_port);
 
-
-
     QJsonObject json_object;
     json_object.insert("method", "join");
     json_object.insert("username", nickname.toStdString().c_str());
