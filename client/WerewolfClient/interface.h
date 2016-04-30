@@ -4,7 +4,7 @@
 #include <QObject>
 #include "login.h"
 #include "ready.h"
-#include "handler_server.h"
+#include "comm_server.h"
 
 class interface : public QObject
 {

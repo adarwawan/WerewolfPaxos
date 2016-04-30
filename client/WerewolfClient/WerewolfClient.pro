@@ -14,14 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         login.cpp \
-    handler_server.cpp \
     ready.cpp \
-    interface.cpp
+    interface.cpp \
+    comm_server.cpp
 
 HEADERS  += login.h \
-    handler_server.h \
     ready.h \
-    interface.h
+    interface.h \
+    comm_server.h
 
 FORMS    += login.ui \
     ready.ui

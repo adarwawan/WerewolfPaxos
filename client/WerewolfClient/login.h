@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QHostAddress>
 #include <QNetworkInterface>
-#include "handler_server.h"
+#include "comm_server.h"
 
 namespace Ui {
 class login;
