@@ -42,11 +42,11 @@ class GameServer:
 				lst.append(player.getName())
 		return lst
 
-	def broadcastByRoom (self, rid, message):
-		msg = json.dumps(message,separators=(',',':'))
-		for player in self.players:
-			if ( ( player != "" ) and ( player.getRoomID() == rid ) ):
-				player.getIPort().send(msg + "\r\n")
+	# def broadcastByRoom (self, rid, message):
+	# 	msg = json.dumps(message,separators=(',',':'))
+	# 	for player in self.players:
+	# 		if ( ( player != "" ) and ( player.getRoomID() == rid ) ):
+	# 			player.getIPort().send(msg + "\r\n")
 
 	def broadcastAll (self, message):
 		msg = json.dumps(message,separators=(',',':'))
@@ -66,9 +66,10 @@ class GameServer:
 		for x in self.players:
 			if ( x == "" ):
 				self.players[i] = Player(i, address, iport, username, 1 if (i % 3 > 0) else 0)
+				self.n_online += 1
+				self.game.addPlayer(i, 1 if (i % 3 > 0) else 0)
 				return i
 			i += 1
-		n_online += 1
 		return None
 
 	def delPlayer (self, pid):
@@ -78,17 +79,6 @@ class GameServer:
 	def disconnectPlayer (self, pid):
 		self.players[pid].disconnect()
 		self.n_online -= 1
-
-	def playerJoin (self, pid, rid):
-		if ( ( self.rooms[rid][1].getPlayerCount() < 5 ) and ( not self.rooms[rid][1].isGameStarted() ) ):
-			self.players[pid].setRoomID(rid)
-			self.rooms[rid][1].addPlayer(pid)
-			self.players[pid].setChar(GameServer.character[self.rooms[rid][1].getPlayerCount() - 1])
-			print "Player join room (" + str(rid) + ") and get character '" + self.players[pid].getChar() + "'"
-			return 1
-		else:
-			print "User trying to join full room"
-			return 0
 
 	def playerQuit (self, pid):
 		self.delPlayer(pid)
@@ -114,7 +104,7 @@ class GameServer:
 
 	def voteKill (self, kpu_id, pid):
 		if self.kpu_id == kpu_id:
-			self.game.getPlayerList()[pid].kill()
+			self.players[pid].kill()
 			resetVotes()
 			setAllVoteStatus(True)
 
@@ -283,5 +273,8 @@ class MessageServer:
 		clientsocket.send(msg +"\r\n")
 
 	def __del__ (self):
-		self.GameServer.delPlayer(self.clientid)
+		if self.GameServer.getGame().isStarted():
+			self.GameServer.disconnectPlayer(self.clientid)
+		else:
+			self.GameServer.playerQuit(self.clientid)
 		print "Message Server destroyed"
