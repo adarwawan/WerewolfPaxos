@@ -38,5 +38,5 @@ void login::on_buttonPlay_clicked()
             json_object.insert("udp_address", address.toString());
     }
     json_object.insert("udp_port", client_port);
-    connection.sendMessageJSONObject(json_object);
+    connection.sendMessage(json_object);
 }
