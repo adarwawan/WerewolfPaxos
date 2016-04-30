@@ -1,12 +1,14 @@
 #ifndef COMM_SERVER_H
 #define COMM_SERVER_H
 
+#include "listplayer.h"
 #include <QObject>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QTcpSocket>
 #include <QJsonDocument>
 #include <QJsonValue>
+#include <QVector>
 
 class comm_server : public QObject
 {
@@ -28,6 +30,7 @@ private:
     QTcpSocket *socket;
     int player_id;
     QJsonValue last_method;
+    QVector<listPlayer> clients;
 };
 
 /* Universal connection handler */

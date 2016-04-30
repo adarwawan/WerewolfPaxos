@@ -80,6 +80,70 @@ void comm_server::readMessage()
             else if (last_method == "ready") {
                 qDebug() << last_method;
                 if (status == "ok") {
+                    qDebug() << json_object.value("description");
+                    //emit on_wait();
+                }
+                else if (status == "error") {
+                    qDebug() << json_object.value("description");
+                }
+            }
+            else if (last_method == "leave") {
+                qDebug() << last_method;
+                if (status == "ok") {
+                    //emit on_wait();
+                }
+                else if (status == "fail" || status == "error") {
+                    qDebug() << json_object.value("description");
+                }
+            }
+            else if (last_method == "client_address") {
+                qDebug() << last_method;
+                if (status == "ok") {
+                    clients.clear();
+                    QJsonObject json_client;
+                    for (int i=0; i<json_object.value("clients").toArray().size(); i++){
+                        json_client = json_object.value("clients").toArray().at(i).toObject();
+                        int _player_id = json_client.value("player_id").toInt();
+                        int _is_alive = json_client.value("is_alive").toInt();
+                        QString _address = json_client.value("address").toString();
+                        int _port = json_client.value("port").toInt();
+                        QString _username = json_client.value("username").toString();
+                        QString _role;
+                        if (_is_alive == 0) {
+                            _role = json_client.value("role").toString();
+                        }
+                        else {
+                            _role = "";
+                        }
+                        listPlayer client(_player_id, _is_alive, _address, _port, _username, _role);
+                        clients.push_back(client);
+                    }
+                }
+                else if (status == "fail" || status == "error") {
+                    qDebug() << json_object.value("description");
+                }
+            }
+            else if (last_method == "vote_result_werewolf") {
+                qDebug() << last_method;
+                if (status == "ok") {
+                    //emit on_wait();
+                }
+                else if (status == "fail" || status == "error") {
+                    qDebug() << json_object.value("description");
+                }
+            }
+            else if (last_method == "vote_result_civilian") {
+                qDebug() << last_method;
+                if (status == "ok") {
+                    //emit on_wait();
+                }
+                else if (status == "fail" || status == "error") {
+                    qDebug() << json_object.value("description");
+                }
+            }
+            else if (last_method == "vote_result") {
+                qDebug() << last_method;
+                if (status == "ok") {
                     //emit on_wait();
                 }
                 else if (status == "fail" || status == "error") {
@@ -88,7 +152,20 @@ void comm_server::readMessage()
             }
         }
         else if (json_object.contains("method")) {
-
+            QJsonValue method;
+            method = json_object.value("method");
+            if (method == "start") {
+                qDebug() << "ini start";
+            }
+            else if (method == "change_phase") {
+                qDebug() << "ini change phase";
+            }
+            else if (method == "vote_now") {
+                qDebug() << "ini vote now";
+            }
+            else if (method == "game_over") {
+                qDebug() << "ini game over";
+            }
         }
     }
 }
