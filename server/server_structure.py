@@ -171,9 +171,7 @@ class MessageServer:
 	def interpreter (self, message, clientsocket, clientaddr, GameServer):
 		msg = json.loads(message)
 
-		if 'method' not in msg:
-			self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"invalid request"}))
-		else:
+		if 'method' in msg:
 			if msg['method'] == 'join':
 				joinResponse(msg, clientsocket, GameServer)
 				# if msg['username'] == "":
@@ -284,12 +282,26 @@ class MessageServer:
 
 			else:
 				self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"invalid request"}))
+		
+		elif 'status' in msg:
+			if 'description' not in msg:
+				if msg['status'] == 'ok':
+					print 'ok'
+				else:
+					print clientsocket + ' ' + clientaddr + ', ' + msg['status'] + ' something went wrong'
+			else:
+				print clientsocket + ' ' + clientaddr + ', ' + msg['status'] + ' ' + msg['description']
+
+		else:
+			self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"invalid request"}))
 
 	def joinResponse (self, msg, clientsocket, GameServer):
 		if 'username' not in msg or 'udp_address' not in msg or 'udp_port' not in msg:
 			self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"wrong request"}))
 		elif self.clientid > -1:
 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"already joined"}))
+		elif GameServer.getGame().isStarted():
+			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please wait, game is currently running"}))
 		else:
 			if msg['username'] == "":
 					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
@@ -300,8 +312,6 @@ class MessageServer:
 						self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
 					else:
 						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
-				elif GameServer.getGame().isStarted():
-					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please wait, game is currently running"}))
 				elif "" not in GameServer.getUsernameList():
 					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
 				else:
@@ -321,6 +331,8 @@ class MessageServer:
 	def readyResponse (self, msg, clientsocket, GameServer):
 		if self.clientid < 0:
 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please login"}))
+		elif GameServer.getGame().isStarted():
+			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"game has started"}))
 		else:
 			GameServer.getReadyList()[self.clientid] = 1
 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":"waiting for other player to start"}))
@@ -356,6 +368,8 @@ class MessageServer:
 	def acceptedProposalResponse(self, msg, clientsocket, GameServer):
 		if self.clientid < 0:
 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please login"}))
+		elif not GameServer.getGame().isStarted():
+			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"game hasn't started"}))
 		else:
 			if 'kpu_id' not in msg or 'description' not in msg:
 				self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"wrong request"}))
@@ -374,6 +388,8 @@ class MessageServer:
 	def voteResultResponse (self, msg, clientsocket, mode, GameServer):
 		if self.clientid < 0:
 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please login"}))
+		elif not GameServer.getGame().isStarted():
+			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"game hasn't started"}))
 		else:
 			if 'vote_status' not in msg or 'vote_result' not in msg:
 				self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"wrong request"}))
