@@ -347,7 +347,10 @@ class MessageServer:
 			for player in GameServer.getPlayerList():
 				if player != "":
 					player_data = []
-					lst.append({"player_id":player.getID(), "is_alive":player.isAlive(), "address":player.getAddress(), "port":player.getIPort(), "username":player.getName()})
+					if player.isAlive():
+						lst.append({"player_id":player.getID(), "is_alive":1, "address":player.getAddress(), "port":player.getIPort(), "username":player.getName()})
+					else:
+						lst.append({"player_id":player.getID(), "is_alive":0, "address":player.getAddress(), "port":player.getIPort(), "username":player.getName(), "role":player.getRoleName()})
 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "clients":lst, "description":"list of clients retrieved"}))
 
 	def acceptedProposalResponse(self, msg, clientsocket, GameServer):
