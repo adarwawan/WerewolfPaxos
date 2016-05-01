@@ -1,13 +1,13 @@
-#include "handler_server.h"
+#include "client.h"
 
-handler_server connection;
+client connection;
 
-handler_server::handler_server(QObject *parent) : QObject(parent)
+client::client(QObject *parent) : QObject(parent)
 {
 
 }
 
-void handler_server::doConnect(QString server_ip, quint16 server_port)
+void client::doConnect(QString server_ip, quint16 server_port)
 {
     socket = new QTcpSocket(this);
     connect(socket, SIGNAL(connected()),this, SLOT(connected()));
@@ -17,24 +17,22 @@ void handler_server::doConnect(QString server_ip, quint16 server_port)
     qDebug() << "connecting...";
 
     socket->connectToHost(server_ip, server_port);
-    qDebug() << server_ip;
-    qDebug() << server_port;
     if (!socket->waitForConnected(3000)){
         qDebug() << "Error: " << socket->errorString();
     }
 }
 
-void handler_server::connected()
+void client::connected()
 {
     qDebug() << "connected...";
 }
 
-void handler_server::disconnected()
+void client::disconnected()
 {
     qDebug() << "disconnected...";
 }
 
-void handler_server::sendMessageJSONObject(QJsonObject message)
+void client::sendMessageJSONObject(QJsonObject message)
 {
     qDebug() << "writing...";
     qDebug() << message;
@@ -47,7 +45,7 @@ void handler_server::sendMessageJSONObject(QJsonObject message)
     }
 }
 
-void handler_server::readMessage()
+void client::readMessage()
 {
     QByteArray message = socket->readAll();
 
@@ -59,15 +57,11 @@ void handler_server::readMessage()
 
     QJsonDocument json_document;
     QJsonObject json_object;
-    QJsonValue method;
-    for (int i = 0; i < message_list.size(); i++) {
+    QJsonValue type;
+    for (int i=0; i<message_list.size(); i++){
         json_document = QJsonDocument::fromJson(message_list.at(i));
         json_object = json_document.object();
-
-        method = json_object.value("status");
-        if (method == "ok"){
-            player_id = json_object.value("player_id").toInt();
-            emit on_login();
-        }
+        qDebug() << json_document;
     }
+
 }
