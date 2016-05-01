@@ -14,16 +14,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         login.cpp \
-    handler_server.cpp \
     ready.cpp \
     interface.cpp \
-    handler_client.cpp
+    comm_server.cpp \
+    listplayer.cpp \
+    gameplay.cpp
 
 HEADERS  += login.h \
-    handler_server.h \
     ready.h \
     interface.h \
-    handler_client.h
+    comm_server.h \
+    listplayer.h \
+    gameplay.h
 
 FORMS    += login.ui \
-    ready.ui
+    ready.ui \
+    gameplay.ui

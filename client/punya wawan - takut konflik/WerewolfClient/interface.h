@@ -5,6 +5,7 @@
 #include "login.h"
 #include "ready.h"
 #include "comm_server.h"
+#include "gameplay.h"
 
 class interface : public QObject
 {
@@ -15,11 +16,13 @@ public:
 signals:
 
 public slots:
-    void on_login();
+    void do_login();
+    void do_start();
 
 private:
     login *w_login;
     ready *w_ready;
+    gameplay *w_gameplay;
 };
 
 #endif // INTERFACE_H
