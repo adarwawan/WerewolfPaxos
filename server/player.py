@@ -73,4 +73,4 @@ class Player:
 	# 	self.can_vote = False
 
 	def __del__ (self):
-		print "Player [ " +  self.name + " ("  + str(self.id) + ") ] exited"
+		print "Player [ " +  self.username + " ("  + str(self.id) + ") ] exited"
