@@ -24,6 +24,8 @@ private:
 
 private slots:
     void do_listclient();
+    void do_start(QJsonObject);
+    void do_changephase(QJsonObject);
 };
 
 #endif // GAMEPLAY_H

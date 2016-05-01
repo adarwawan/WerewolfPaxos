@@ -28,6 +28,54 @@ QVector<listPlayer> comm_server::getClients() {
     return clients;
 }
 
+int comm_server::getPlayerId(){
+    return player_id;
+}
+
+QString comm_server::getPlayerName(){
+    return player_name;
+}
+
+QString comm_server::getPlayerRole(){
+    return player_role;
+}
+
+int comm_server::getCurrentPhase() {
+    return current_phase;
+}
+
+int comm_server::getCurrentDay() {
+    return current_day;
+}
+
+QString comm_server::getFriends(){
+    return friends;
+}
+
+void comm_server::setPlayerId(int _id) {
+    player_id = _id;
+}
+
+void comm_server::setPlayerName(QString _name) {
+    player_name = _name;
+}
+
+void comm_server::setPlayerRole(QString _role) {
+    player_role = _role;
+}
+
+void comm_server::setCurrentPhase(int _phase) {
+    current_phase = _phase;
+}
+
+void comm_server::setCurrentDay(int _day) {
+    current_day = _day;
+}
+
+void comm_server::setFriends(QString _friends) {
+    friends = _friends;
+}
+
 void comm_server::connected()
 {
     qDebug() << "connected...";
@@ -94,7 +142,7 @@ void comm_server::readMessage()
             else if (last_method == "leave") {
                 qDebug() << last_method;
                 if (status == "ok") {
-                    //emit on_wait();
+
                 }
                 else if (status == "fail" || status == "error") {
                     qDebug() << json_object.value("description");
@@ -164,9 +212,7 @@ void comm_server::readMessage()
                 QJsonObject json_object_respond;
                 json_object_respond.insert("status", "ok");
                 connection.sendMessage(json_object_respond);
-                /* Set role */
-                player_role = json_object.value("role").toString();
-                emit on_start();
+                emit on_start(json_object);
             }
             else if (method == "change_phase") {
                 qDebug() << "ini change phase";
