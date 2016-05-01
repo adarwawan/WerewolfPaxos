@@ -1,11 +1,15 @@
-/*#ifndef COMM_CLIENT_H
+#ifndef COMM_CLIENT_H
 #define COMM_CLIENT_H
 
+#include "comm_server.h"
 #include <QObject>
+#include <QUdpSocket>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QUdpSocket>
-#include <QString>
+#include <QTcpSocket>
+#include <QJsonDocument>
+#include <QJsonValue>
+#include <QVector>
 
 class comm_client : public QObject
 {
@@ -13,7 +17,7 @@ class comm_client : public QObject
 public:
     explicit comm_client(QObject *parent = 0);
     void SendMessage(QString s);
-    void SendMessage(QHostAddress IPadr, quint16 port, QString s);
+    void SendMessage(QString recv_address, int recv_port,QJsonObject message);
     void prepareProposal(QJsonObject json_object);
     void acceptProposal(QJsonObject json_object);
     void vote_werewolf(QJsonObject json);
@@ -29,9 +33,22 @@ public slots:
     void readyRead();
 
 private:
+    int totalVote=0;
+    QString acc_kpu_id;
+    QString prev_kpu_id;
+    QString max_proposed_id;
+    int sequence =0;
     QUdpSocket *socket;
+    int player_id;
+    QString player_name;
+    QString last_method;
+    QString player_role;
+    int current_phase;
+    int current_day;
+    int is_kpu;
+    QString friends;
 
 };
 
 #endif // COMM_CLIENT_H
-*/
+
