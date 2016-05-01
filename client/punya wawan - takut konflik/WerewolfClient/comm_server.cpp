@@ -161,9 +161,12 @@ void comm_server::readMessage()
             method = json_object.value("method");
             if (method == "start") {
                 qDebug() << "ini start";
-                QJsonObject json_object;
-                json_object.insert("method", "client_address");
-                sendMessage(json_object);
+                QJsonObject json_object_respond;
+                json_object_respond.insert("status", "ok");
+                connection.sendMessage(json_object_respond);
+                /* Set role */
+                player_role = json_object.value("role").toString();
+                emit on_start();
             }
             else if (method == "change_phase") {
                 qDebug() << "ini change phase";

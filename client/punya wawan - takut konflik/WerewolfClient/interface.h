@@ -17,6 +17,7 @@ signals:
 
 public slots:
     void do_login();
+    void do_start();
 
 private:
     login *w_login;

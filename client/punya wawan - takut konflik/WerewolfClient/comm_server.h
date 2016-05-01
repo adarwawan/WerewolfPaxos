@@ -21,6 +21,7 @@ public:
 signals:
     void on_login();
     void on_ready();
+    void on_start();
     void on_clients();
 
 public slots:
@@ -34,6 +35,7 @@ private:
     int player_id;
     QString last_method;
     QVector<listPlayer> clients;
+    QString player_role;
 };
 
 /* Universal connection handler */

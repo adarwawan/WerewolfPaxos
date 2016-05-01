@@ -13,6 +13,11 @@ ready::~ready()
     delete ui;
 }
 
+void ready::do_destroy()
+{
+    delete this;
+}
+
 void ready::do_show()
 {
     this->show();

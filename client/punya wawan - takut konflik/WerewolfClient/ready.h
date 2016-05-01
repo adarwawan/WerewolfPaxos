@@ -23,6 +23,7 @@ private:
     Ui::ready *ui;
 
 private slots:
+    void do_destroy();
     void do_show();
     void do_hide();
     void do_wait();

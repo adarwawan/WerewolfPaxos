@@ -14,6 +14,13 @@ interface::interface(QObject *parent) : QObject(parent)
 void interface::do_login()
 {
     connect(&connection, SIGNAL(on_ready()), w_ready, SLOT(do_wait()));
-    connect(&connection, SIGNAL(on_clients()), w_gameplay, SLOT(do_listclient()));
+    connect(&connection, SIGNAL(on_start()), this, SLOT(do_start()));
     w_ready->show();
+}
+
+void interface::do_start()
+{
+    w_ready->hide();
+    connect(&connection, SIGNAL(on_clients()), w_gameplay, SLOT(do_listclient()));
+    w_gameplay->show();
 }
