@@ -61,13 +61,15 @@ class GameServer:
 		msg = json.dumps(message,separators=(',',':'))
 		for player in self.players:
 			if player != "":
-				player.getIPort().send(msg + "\r\n")
+				# player.getIPort().send(msg + "\r\n")
+				player.getIPort().send(msg + "\n")
 
 	def broadcastByPID (self, pid, message):
 		msg = json.dumps(message,separators=(',',':'))
 		player = self.players[pid]
 		if player != "":
-			player.getIPort().send(msg + "\r\n")
+			# player.getIPort().send(msg + "\r\n")
+			player.getIPort().send(msg + "\n")
 
 
 	def newPlayer (self, username, iport, uport, address):
@@ -106,9 +108,9 @@ class GameServer:
 	def voteKPU (self, pid, kpu_id):
 		if self.can_vote[pid]:
 			self.votes[pid] = kpu_id
-			if self.votes.count(kpu_id) > (self.n_online/2):
+			if self.votes.count(kpu_id) > ((self.n_online-2)/2):
 				self.kpu_id = kpu_id
-				setAllVoteStatus(False)
+				self.setAllVoteStatus(False)
 				return self.kpu_id
 			return -1
 		else:
@@ -125,8 +127,8 @@ class GameServer:
 	def voteKill (self, kpu_id, pid):
 		if self.kpu_id == kpu_id:
 			self.players[pid].kill()
-			resetVotes()
-			setAllVoteStatus(True)
+			self.resetVotes()
+			self.setAllVoteStatus(True)
 
 	def reduceVoteLimit (self, reduction):
 		self.vote_limit -= reduction
