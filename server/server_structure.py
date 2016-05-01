@@ -106,9 +106,10 @@ class GameServer:
 	def voteKPU (self, pid, kpu_id):
 		if self.can_vote[pid]:
 			self.votes[pid] = kpu_id
-			if self.votes.count(kpu_id) > (n_online/2):
+			if self.votes.count(kpu_id) > (self.n_online/2):
 				self.kpu_id = kpu_id
 				setAllVoteStatus(False)
+				return self.kpu_id
 			return -1
 		else:
 			return -2
@@ -261,10 +262,11 @@ class MessageServer:
 					if r == 1:
 						n_ready += 1
 				if n_ready == n_players:
+					GameServer.getGame().startGame()
 					# different message per role
 					for player in GameServer.getPlayerList():
 						if player != "":
-							self.sendResponse(player.getUPort(), json.dumps({"method":"start", "time":"day", "role":player.getRoleName(), "friend":GameServer.getWolfList() if player.getRole() == 1 else "", "description":"game is started"}))
+							self.sendResponse(player.getIPort(), json.dumps({"method":"start", "time":"day", "role":player.getRoleName(), "friend":GameServer.getWolfList() if player.getRole() == 1 else "", "description":"game is started"}))
 
 	def clientAddressResponse (self, msg, clientsocket, GameServer):
 		if self.clientid < 0:
@@ -290,7 +292,7 @@ class MessageServer:
 				self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"wrong request"}))
 			else:
 				if msg['kpu_id'] > -1:
-					result = GameServer.voteKPU(clientid, msg['kpu_id'])
+					result = GameServer.voteKPU(self.clientid, msg['kpu_id'])
 					if result > -2:
 						self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
 						if result > -1:
@@ -329,6 +331,7 @@ class MessageServer:
 								GameServer.getGame().advanceTime()
 								GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
 							else:
+								GameServer.getGame().stopGame()
 								GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
 						else:
 							self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"wrong vote result"}))
