@@ -3,7 +3,7 @@ from player import *
 class Game:
 	def __init__ (self):
 		self.turn = 0
-		self.time = 0
+		self.time = 1
 		self.winner = -1
 		self.players = []
 		self.isStart = False
@@ -40,7 +40,7 @@ class Game:
 
 	def advanceTime (self):
 		self.time = (self.time + 1) % 2
-		if self.Time == 0:
+		if self.time == 0:
 			self.turn += 1
 
 	def getPlayerList (self):
