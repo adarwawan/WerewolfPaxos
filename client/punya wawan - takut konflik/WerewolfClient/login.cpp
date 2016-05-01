@@ -28,6 +28,7 @@ void login::on_buttonPlay_clicked()
     qint16 client_port = ui->udp_port->text().toInt();
 
     connection.doConnect(server_ip, server_port);
+    conn_client.doListen(client_port);
 
     QJsonObject json_object;
     json_object.insert("method", "join");
