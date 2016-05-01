@@ -17,7 +17,7 @@ class GameServer:
 		self.n_online = 0
 		self.kpu_id = -1
 		self.MAX_VOTE = 2
-		self.MIN_PLAYERS = 2
+		self.MIN_PLAYERS = 6
 		self.vote_limit = self.MAX_VOTE
 
 	def getPlayerList (self):
@@ -458,6 +458,7 @@ class MessageServer:
 	def sendResponse (self, clientsocket, msg):
 		print msg
 		clientsocket.send(msg +"\r\n")
+		# clientsocket.send(msg +"\n")
 
 	def __del__ (self):
 		if self.GameServer.getGame().isStarted():

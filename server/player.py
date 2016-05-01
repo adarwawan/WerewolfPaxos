@@ -20,7 +20,7 @@ class Player:
 		return self.iport
 
 	def getName (self):
-		return self.name
+		return self.username
 
 	def getRole (self):
 		return self.role
