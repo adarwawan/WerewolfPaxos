@@ -26,8 +26,8 @@ private slots:
     void do_show();
     void do_hide();
     void do_wait();
-    void do_listclient();
     void on_readyButton_clicked();
+    void on_leaveButton_clicked();
 };
 
 #endif // READY_H

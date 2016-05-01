@@ -17,13 +17,16 @@ SOURCES += main.cpp\
     ready.cpp \
     interface.cpp \
     comm_server.cpp \
-    listplayer.cpp
+    listplayer.cpp \
+    gameplay.cpp
 
 HEADERS  += login.h \
     ready.h \
     interface.h \
     comm_server.h \
-    listplayer.h
+    listplayer.h \
+    gameplay.h
 
 FORMS    += login.ui \
-    ready.ui
+    ready.ui \
+    gameplay.ui
