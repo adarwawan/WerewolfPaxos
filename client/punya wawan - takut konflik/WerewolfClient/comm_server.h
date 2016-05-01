@@ -18,11 +18,28 @@ public:
     void doConnect(QString server_ip, quint16 server_port);
     QVector<listPlayer> getClients();
 
+    int getPlayerId();
+    QString getPlayerName();
+    QString getPlayerRole();
+    int getCurrentPhase();
+    int getCurrentDay();
+    int getIsKpu();
+    QString getFriends();
+
+    void setPlayerId(int _id);
+    void setPlayerName(QString _name);
+    void setPlayerRole(QString _role);
+    void setCurrentPhase(int _phase);
+    void setCurrentDay(int _day);
+    void setIsKpu(int _kpu);
+    void setFriends(QString _friends);
+
 signals:
     void on_login();
     void on_ready();
-    void on_start();
+    void on_start(QJsonObject);
     void on_clients();
+    void on_changephase(QJsonObject);
 
 public slots:
     void connected();
@@ -33,9 +50,14 @@ public slots:
 private:
     QTcpSocket *socket;
     int player_id;
+    QString player_name;
     QString last_method;
     QVector<listPlayer> clients;
     QString player_role;
+    int current_phase;
+    int current_day;
+    int is_kpu;
+    QString friends;
 };
 
 /* Universal connection handler */

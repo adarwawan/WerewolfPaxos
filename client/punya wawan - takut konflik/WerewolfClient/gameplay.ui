@@ -191,7 +191,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>adarwawan</string>
+     <string/>
     </property>
    </widget>
    <widget class="Line" name="line_2">
@@ -217,7 +217,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>0</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="roleText">
@@ -230,7 +230,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>werewolf</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="phaseText">
@@ -243,7 +243,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>night</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="daysText">
@@ -256,7 +256,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>3</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="friendText">
@@ -269,7 +269,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>bayurasyadi,kevinyauris</string>
+     <string/>
     </property>
    </widget>
   </widget>

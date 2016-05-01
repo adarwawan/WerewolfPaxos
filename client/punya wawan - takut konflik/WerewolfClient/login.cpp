@@ -22,6 +22,7 @@ void login::do_destroy()
 void login::on_buttonPlay_clicked()
 {
     nickname = ui->username->text();
+    connection.setPlayerName(nickname);
     QString server_ip = ui->address->text();
     qint16 server_port = ui->tcp_port->text().toInt();
     qint16 client_port = ui->udp_port->text().toInt();

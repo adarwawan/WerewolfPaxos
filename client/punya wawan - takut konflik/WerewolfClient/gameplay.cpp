@@ -24,3 +24,34 @@ void gameplay::do_listclient() {
         ui->listPlayerTable->setItem(i,0,new QTableWidgetItem(l.getUsername()));
     }
 }
+
+void gameplay::do_start(QJsonObject json_object)
+{
+    ui->usernameText->setText(connection.getPlayerName());
+    ui->idText->setText(QString::number(connection.getPlayerId()));
+
+    QString tPhase = json_object.value("time").toString();
+    if (tPhase == "day") {
+        connection.setCurrentPhase(0);
+    }
+    else {
+        connection.setCurrentPhase(1);
+    }
+    ui->phaseText->setText(tPhase);
+
+    connection.setCurrentDay(1);
+    connection.setPlayerRole(json_object.value("role").toString());
+
+    ui->roleText->setText(connection.getPlayerRole());
+    ui->daysText->setText(QString::number(connection.getCurrentDay()));
+    ui->friendText->setText(connection.getFriends());
+
+    QJsonObject json_address;
+    json_address.insert("method", "client_address");
+    connection.sendMessage(json_address);
+}
+
+void gameplay::do_changephase(QJsonObject json_object)
+{
+
+}

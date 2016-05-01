@@ -1,7 +1,7 @@
-#include "handler_client.h"
+/*#include "comm_client.h"
 #include <cstdlib>
 
-handler_client::handler_client(QObject *parent)
+comm_client::comm_client(QObject *parent)
 {
     // create a QUDP socket
     socket = new QUdpSocket(this);
@@ -15,7 +15,7 @@ handler_client::handler_client(QObject *parent)
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 }
 
-void handler_client::SendMessage(QString s)
+void comm_client::SendMessage(QString s)
 {
     QByteArray Data;
     Data.append("Hello from UDP");
@@ -27,11 +27,11 @@ void handler_client::SendMessage(QString s)
     socket->writeDatagram(s, QHostAddress::LocalHost, 1234);
 }
 
-void handler_client::SendMessage(QHostAddress IPadr, quint16 port, QString s)
+void comm_client::SendMessage(QHostAddress IPadr, quint16 port, QString s)
 {
     QByteArray Data;
     v1 = rand() % 100;
-    if(v1 < 85){
+    if (v1 < 85) {
     Data.append(s);
 
     // Sends the datax gram datagram
@@ -42,7 +42,7 @@ void handler_client::SendMessage(QHostAddress IPadr, quint16 port, QString s)
     }
 }
 
-void handler_client::readyRead()
+void comm_client::readyRead()
 {
     // when data comes in
     QByteArray buffer;
@@ -67,7 +67,7 @@ void handler_client::readyRead()
     qDebug() << "Message: " << buffer;
 }
 
-void handler_client::prepareProposal(QJsonObject json_object){
+void comm_client::prepareProposal(QJsonObject json_object){
     QJsonArray json_array = json_object.take("proposal_id");
         long curid[2];
         curid[0]= json_array.at(0);
@@ -94,7 +94,7 @@ void handler_client::prepareProposal(QJsonObject json_object){
         SendMessage(response);
 }
 
-void handler_client::acceptProposal(QJsonObject json_object){
+void comm_client::acceptProposal(QJsonObject json_object){
     long curid[2];
     QJsonArray json_array = json_object.take("proposal_id");
     curid[0]= json_array.at(0);
@@ -122,7 +122,7 @@ void handler_client::acceptProposal(QJsonObject json_object){
     SendMessage(response);
 }
 
-void handler_client::vote_werewolf(QJsonObject json){
+void comm_client::vote_werewolf(QJsonObject json){
     String jsonvote;
     QJsonObject temp;
     int player_id = json.value("player_id").toInt();
@@ -140,7 +140,7 @@ void handler_client::vote_werewolf(QJsonObject json){
 
 }
 
-void handler_client::vote_civilian(QJsonObject json){
+void comm_client::vote_civilian(QJsonObject json){
     String jsonVote;
     QJsonObject temp;
 
@@ -161,7 +161,7 @@ void handler_client::vote_civilian(QJsonObject json){
 
 }
 
-void handler_client::sendvote_civilian(int player_id){
+void comm_client::sendvote_civilian(int player_id){
     QString jsonVote;
     QJsonObject temp;
 
@@ -171,7 +171,7 @@ void handler_client::sendvote_civilian(int player_id){
     //kirim kemana ini?
 }
 
-void handler_client::sendvote_werewolf(int player_id){
+void comm_client::sendvote_werewolf(int player_id){
     QString jsonVote;
     QJsonObject temp;
 
@@ -181,7 +181,7 @@ void handler_client::sendvote_werewolf(int player_id){
     //kirim kemana ini?
 }
 
-void handler_client::propose(int player_id){
+void comm_client::propose(int player_id){
     QString json;
     QJsonObject temp;
     temp.insert("method","prepare_proposal");
@@ -193,7 +193,7 @@ void handler_client::propose(int player_id){
     //kirim ke siapa aj?
 }
 
-void handler_client::accept(int player_id){
+void comm_client::accept(int player_id){
     QString json;
     QJsonObject temp;
     temp.insert("method","accept_proposal");
@@ -204,3 +204,4 @@ void handler_client::accept(int player_id){
     json = temp.toString();
     //kirim ke siapa aj?
 }
+*/
