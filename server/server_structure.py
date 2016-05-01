@@ -304,19 +304,19 @@ class MessageServer:
 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please wait, game is currently running"}))
 		else:
 			if msg['username'] == "":
-					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
-				elif msg['username'] in GameServer.getUsernameList():
-					index = GameServer.getUsernameList().index(msg['username'])
-					if not GameServer.getPlayerList()[index].isOnline():
-						self.clientid = GameServer.joinPlayer(msg['username'], msg['udp_port'], msg['udp_address'])
-						self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
-					else:
-						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
-				elif "" not in GameServer.getUsernameList():
-					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
+				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
+			elif msg['username'] in GameServer.getUsernameList():
+				index = GameServer.getUsernameList().index(msg['username'])
+				if not GameServer.getPlayerList()[index].isOnline():
+					self.clientid = GameServer.joinPlayer(msg['username'], msg['udp_port'], msg['udp_address'])
+					self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
 				else:
-					self.clientid = GameServer.newPlayer(msg['username'], msg['udp_port'], msg['udp_address'])
-					self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":self.clientid}))
+					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
+			elif "" not in GameServer.getUsernameList():
+				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
+			else:
+				self.clientid = GameServer.newPlayer(msg['username'], msg['udp_port'], msg['udp_address'])
+				self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":self.clientid}))
 
 	def leaveResponse (self, msg, clientsocket, GameServer):
 		if self.clientid < 0:
