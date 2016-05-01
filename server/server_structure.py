@@ -396,15 +396,27 @@ class MessageServer:
 			else:
 				if self.clientid == GameServer.getKPUID() and GameServer.getGame().getTime() == mode:
 					if msg['vote_status'] == 1:
-						voteKill(msg['player_killed'])
-						self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
-						GameServer.resetVoteLimit()
-						win = GameServer.getGame().checkWin()
-						if win == -1:
-							GameServer.getGame().advanceTime()
-							GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
+						vote_result = -1
+						nmax_vote = 0
+						for votes in msg['vote_result']:
+							if nmax_vote < votes[1]:
+								nmax_vote = votes[1]
+								vote_result = votes[0]
+							elif nmax_vote == votes[1]:
+								vote_result = -1
+
+						if vote_result == msg['player_killed']:
+							voteKill(msg['player_killed'])
+							self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
+							GameServer.resetVoteLimit()
+							win = GameServer.getGame().checkWin()
+							if win == -1:
+								GameServer.getGame().advanceTime()
+								GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
+							else:
+								GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
 						else:
-							GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
+							self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"wrong vote result"}))
 					elif msg['vote_status'] == -1:
 						if not GameServer.reduceVoteLimit(mode):
 							GameServer.getGame().advanceTime()
