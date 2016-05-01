@@ -299,6 +299,7 @@ class MessageServer:
 						self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
 						if result > -1:
 							GameServer.broadcastAll({"method":"kpu_selected", "kpu_id":result})
+							GameServer.broadcastAll({"method":"vote_now", "phase":GameServer.getGame().getTimeName()})
 					else:
 						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"voting ended"}))
 				else:
@@ -325,7 +326,7 @@ class MessageServer:
 								vote_result = -1
 
 						if vote_result == msg['player_killed']:
-							voteKill(msg['player_killed'])
+							GameServer.voteKill(msg['player_killed'])
 							self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
 							GameServer.resetVoteLimit()
 							win = GameServer.getGame().checkWin()
