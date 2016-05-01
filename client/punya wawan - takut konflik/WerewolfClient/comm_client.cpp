@@ -1,207 +1,47 @@
-/*#include "comm_client.h"
-#include <cstdlib>
+#include "comm_client.h"
+#include <cstdio>
 
-comm_client::comm_client(QObject *parent)
+comm_client conn_client;
+
+comm_client::comm_client(QObject *parent) : QObject(parent)
 {
-    // create a QUDP socket
+
+}
+
+void comm_client::doListen(quint16 client_port)
+{
     socket = new QUdpSocket(this);
+    connect(socket, SIGNAL(readyRead()), this, SLOT(readMessage()));
 
-    // The most common way to use QUdpSocket class is
-    // to bind to an address and port using bind()
-    // bool QAbstractSocket::bind(const QHostAddress & address,
-    //     quint16 port = 0, BindMode mode = DefaultForPlatform)
-    socket->bind(QHostAddress::LocalHost, 1234);
+    qDebug() << "binding...";
 
-    connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
+    socket->bind(QHostAddress::Any, client_port);
 }
 
-void comm_client::SendMessage(QString s)
+void comm_client::sendMessage(QString recv_address, QString recv_port, QJsonObject message)
 {
-    QByteArray Data;
-    Data.append("Hello from UDP");
-
-    // Sends the datagram datagram
-    // to the host address and at port.
-    // qint64 QUdpSocket::writeDatagram(const QByteArray & datagram,
-    //                      const QHostAddress & host, quint16 port)
-    socket->writeDatagram(s, QHostAddress::LocalHost, 1234);
-}
-
-void comm_client::SendMessage(QHostAddress IPadr, quint16 port, QString s)
-{
-    QByteArray Data;
-    v1 = rand() % 100;
+    int v1 = rand() % 100;
     if (v1 < 85) {
-    Data.append(s);
-
-    // Sends the datax gram datagram
-    // to the host address and at port.
-    // qint64 QUdpSocket::writeDatagram(const QByteArray & datagram,
-    //                      const QHostAddress & host, quint16 port)
-    socket->writeDatagram(Data,  IPadr, port,s);
+        QJsonDocument json_document;
+        json_document.setObject(message);
+        socket->writeDatagram((json_document.toJson(QJsonDocument::Compact) + "\r\n"), QHostAddress(recv_address), recv_port.toUShort());
     }
 }
 
-void comm_client::readyRead()
+void comm_client::readMessage()
 {
-    // when data comes in
-    QByteArray buffer;
-    buffer.resize(socket->pendingDatagramSize());
+    while (socket->hasPendingDatagrams()) {
+        QByteArray message;
+        message.resize(socket->pendingDatagramSize());
 
-    QHostAddress sender;
-    quint16 senderPort;
+        QHostAddress sender_ip;
+        quint16 sender_port;
+        socket->readDatagram(message.data(), message.size(), &sender_ip, &sender_port);
 
-    // qint64 QUdpSocket::readDatagram(char * data, qint64 maxSize,
-    //                 QHostAddress * address = 0, quint16 * port = 0)
-    // Receives a datagram no larger than maxSize bytes and stores it in data.
-    // The sender's host address and port is stored in *address and *port
-    // (unless the pointers are 0).
+        qDebug() << "reading...";
 
-    socket->readDatagram(buffer.data(), buffer.size(),
-                         &sender, &senderPort);
-    if (buffer == "quit"){
-        socket->close();
-    }
-    qDebug() << "Message from: " << sender.toString();
-    qDebug() << "Message port: " << senderPort;
-    qDebug() << "Message: " << buffer;
-}
-
-void comm_client::prepareProposal(QJsonObject json_object){
-    QJsonArray json_array = json_object.take("proposal_id");
-        long curid[2];
-        curid[0]= json_array.at(0);
-        curid[1]= json_array.at(1);
-        QJsonObject temp;
-        bool valid = false;
-        if(curid[0] > max_proposed_id[0]){
-            valid= true;
-        } else if (curid[0] == max_proposed_id[0]){
-            if(curid[1] > max_proposed_id[1]){
-                valid=true;
-            }
-        }
-        if (valid){
-            temp.insert("status", "ok");
-            temp.insert("description","accepted");
-            temp.insert("previous_id", acc_kpu_id);
-        } else {
-            temp.insert("status","fail");
-            temp.insert("description", "rejected");
-        }
-
-        QString response = json_object;//ubah ke string
-        SendMessage(response);
-}
-
-void comm_client::acceptProposal(QJsonObject json_object){
-    long curid[2];
-    QJsonArray json_array = json_object.take("proposal_id");
-    curid[0]= json_array.at(0);
-    curid[1]= json_array.at(1);
-    QJsonObject temp;
-    bool valid = false;
-    int kpu_id = -1;
-    if(curid[0] > max_proposed_id[0]){
-        if(curid[1] > max_proposed_id[1]){
-            kpu_id = json_object.value("kpu_id").toString();
-        if((acc_kpu_id = -1) || ((kpu_id == acc_kpu_id)))
-            vlaid = true;
-        }
+        QList<QByteArray> message_list = message.split('\n');
+        qDebug() << message_list;
 
     }
-
-    if (valid){
-        temp.insert("status", "ok");
-        temp.insert("description","accepted");
-    } else {
-        temp.insert("status","fail");
-        temp.insert("description", "rejected");
-    }
-    QString response = json_object;//ubah ke string
-    SendMessage(response);
 }
-
-void comm_client::vote_werewolf(QJsonObject json){
-    String jsonvote;
-    QJsonObject temp;
-    int player_id = json.value("player_id").toInt();
-    int totalPlayerId = listPlayer.size()-1;
-    if(player_id <= totalPlayerId){
-        temp.insert("status", "ok");
-        temp.insert("description","vote werewolf accepted");
-        totalVote++;
-        String response = temp.toString();
-        SendMessage(response);//ini harusnya kirim kemana, harusnya ad mekanisme perhitungan vote
-    } else {
-        temp.insert("status","fail");
-        temp.insert("description", "vote werewolf rejected");
-    }
-
-}
-
-void comm_client::vote_civilian(QJsonObject json){
-    String jsonVote;
-    QJsonObject temp;
-
-
-
-    int player_id = json.value("player_id").toInt();
-    int totalPlayerId = listPlayer.size()-1;
-    if(player_id <= totalPlayerId){
-        temp.insert("status", "ok");
-        temp.insert("description","vote civilian accepted");
-        totalVote++;
-        String response = temp.toString();
-        SendMessage(response);//ini harusnya kirim kemana, harusnya ad mekanisme perhitungan vote
-    } else{
-        temp.insert("status","fail");
-        temp.insert("description", "vote civilan rejected");
-    }
-
-}
-
-void comm_client::sendvote_civilian(int player_id){
-    QString jsonVote;
-    QJsonObject temp;
-
-    temp.insert("method","vote_civilian");
-    temp.insert("player_id", player_id);
-    jsonVote= temp.toString();
-    //kirim kemana ini?
-}
-
-void comm_client::sendvote_werewolf(int player_id){
-    QString jsonVote;
-    QJsonObject temp;
-
-    temp.insert("method","vote_werewolf");
-    temp.insert("player_id", player_id);
-    jsonVote= temp.toString();
-    //kirim kemana ini?
-}
-
-void comm_client::propose(int player_id){
-    QString json;
-    QJsonObject temp;
-    temp.insert("method","prepare_proposal");
-    QJsonArray ja;
-    ja.insert(0,++sequence);
-    ja.insert(1, player_id);
-    temp.insert("proposal_id", ja);
-    json = temp.toString();
-    //kirim ke siapa aj?
-}
-
-void comm_client::accept(int player_id){
-    QString json;
-    QJsonObject temp;
-    temp.insert("method","accept_proposal");
-    QJsonArray ja;
-    ja.insert(0,++sequence);
-    ja.insert(1, player_id);
-    temp.insert("proposal_id", ja);
-    json = temp.toString();
-    //kirim ke siapa aj?
-}
-*/
