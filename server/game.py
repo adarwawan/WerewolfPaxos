@@ -11,8 +11,6 @@ class Game:
 		self.n_civ = 0
 
 	def checkWin(self):
-		self.n_wolf = 0
-		self.n_civ = 0
 		if self.n_wolf == 0:
 			return 0
 		elif self.n_wolf >= self.n_civ:
@@ -53,10 +51,10 @@ class Game:
 		elif role == 1:
 			self.n_wolf += 1
 
-	def killWolf ():
+	def killWolf (self):
 		self.n_wolf -= 1
 
-	def killCiv ():
+	def killCiv (self):
 		self.n_civ -= 1
 
 	def delPlayer (self, pid):

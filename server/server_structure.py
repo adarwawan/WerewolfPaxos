@@ -76,10 +76,10 @@ class GameServer:
 		i = 0
 		for x in self.players:
 			if ( x == "" ):
-				self.players[i] = Player(i, address, iport, uport, username, 1 if (i % 3 > 0) else 0)
+				self.players[i] = Player(i, address, iport, uport, username, 1 if ((i+1) % 3 == 0) else 0)
 				self.usernames[i] = username
 				self.n_online += 1
-				self.game.addPlayer(i, 1 if (i % 3 > 0) else 0)
+				self.game.addPlayer(i, 1 if ((i+1) % 3 == 0) else 0)
 				return i
 			i += 1
 		return None
@@ -92,6 +92,7 @@ class GameServer:
 		return pid
 
 	def delPlayer (self, pid):
+		self.game.delPlayer(pid)
 		self.ready[pid] = 0
 		self.players[pid] = ""
 		self.usernames[pid] = ""
@@ -129,6 +130,7 @@ class GameServer:
 			self.players[pid].kill()
 			self.resetVotes()
 			self.setAllVoteStatus(True)
+			self.game.killWolf() if self.players[pid].getRole() == 1 else self.game.killCiv()
 
 	def reduceVoteLimit (self, reduction):
 		self.vote_limit -= reduction
@@ -326,13 +328,14 @@ class MessageServer:
 								vote_result = -1
 
 						if vote_result == msg['player_killed']:
-							GameServer.voteKill(msg['player_killed'])
+							GameServer.voteKill(self.clientid, msg['player_killed'])
 							self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
 							GameServer.resetVoteLimit()
 							win = GameServer.getGame().checkWin()
 							if win == -1:
 								GameServer.getGame().advanceTime()
 								GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
+								GameServer.broadcastAll({"method":"vote_now", "phase":GameServer.getGame().getTimeName()})
 							else:
 								GameServer.getGame().stopGame()
 								GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
@@ -342,6 +345,7 @@ class MessageServer:
 						if not GameServer.reduceVoteLimit(mode):
 							GameServer.getGame().advanceTime()
 							GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
+							GameServer.broadcastAll({"method":"vote_now", "phase":GameServer.getGame().getTimeName()})
 							GameServer.resetVoteLimit()
 					else:
 						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid status"}))
