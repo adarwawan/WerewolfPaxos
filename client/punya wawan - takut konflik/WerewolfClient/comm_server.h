@@ -16,7 +16,7 @@ class comm_server : public QObject
 public:
     explicit comm_server(QObject *parent = 0);
     void doConnect(QString server_ip, quint16 server_port);
-    static QVector<listPlayer> getClients();
+    QVector<listPlayer> getClients();
 
     int getPlayerId();
     QString getPlayerName();
@@ -52,7 +52,7 @@ private:
     int player_id;
     QString player_name;
     QString last_method;
-    static QVector<listPlayer> clients;
+    QVector<listPlayer> clients;
     QString player_role;
     int current_phase;
     int current_day;

@@ -66,26 +66,24 @@ void comm_client::readyRead()
                 QJsonObject tempvote;
                 QString phase = json_object.value("phase").toString();
             if(phase == "day"){
+                QVector<listPlayer> tempTab = comm_server::getClients();
                 tempvote.insert("method", "vote_civilian");
                 tempvote.insert("player_id", player_id);
                 for (int i=0; i<tempTab.length();i++ ){
                     listPlayer l;
                     l = connection.getClients().at(i);
-                   SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+                   SendMessage(l.getUdpAddress(), l.getUdpPort(),tempvote);
                 }
             } else if (phase == "night"){
                 tempvote.insert("method", "vote_werewolf");
                 tempvote.insert("player_id", player_id);
+                 QVector<listPlayer> tempTab = connection.getClients();
                 for (int i=0; i<tempTab.length();i++ ){
                     listPlayer l;
                     l = connection.getClients().at(i);
-                   SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+                   SendMessage(l.getUdpAddress(), l.getUdpPort(),tempvote);
               }
             }
-          } else if(method == "prepare"){
-              propose(player-id);
-          } else if(method == "acc"){
-              accept(player_id);
           }
         }
     }
