@@ -14,6 +14,7 @@ interface::interface(QObject *parent) : QObject(parent)
 void interface::do_login()
 {
     connect(&connection, SIGNAL(on_changephase(QJsonObject)), w_gameplay, SLOT(do_changephase(QJsonObject)));
+    connect(&connection, SIGNAL(on_get_clients()), w_gameplay, SLOT(do_populate_players()));
     w_login->hide();
     w_gameplay->show();
 }

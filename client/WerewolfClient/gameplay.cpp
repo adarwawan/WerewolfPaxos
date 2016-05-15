@@ -35,3 +35,7 @@ void gameplay::do_changephase(QJsonObject json_object)
     json_address.insert("method", "client_address");
     connection.sendMessage(json_address);
 }
+
+void gameplay::do_populate_players(){
+
+}

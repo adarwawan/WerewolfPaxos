@@ -200,7 +200,27 @@ void comm_server::readMessage()
                         client_ = json_object.value("clients").toArray().at(i).toObject();
                         clients.push_back(client_);
                     }
-                    //emit on_get_clients();
+
+                    client.clear();
+                    QJsonObject json_client;
+                    for (int i=0; i<json_object.value("clients").toArray().size(); i++){
+                        json_client = json_object.value("clients").toArray().at(i).toObject();
+                        int _player_id = json_client.value("player_id").toInt();
+                        int _is_alive = json_client.value("is_alive").toInt();
+                        QString _address = json_client.value("address").toString();
+                        int _port = json_client.value("port").toInt();
+                        QString _username = json_client.value("username").toString();
+                        QString _role;
+                        if (_is_alive == 0) {
+                            _role = json_client.value("role").toString();
+                        }
+                        else {
+                            _role = "";
+                        }
+                        listPlayer _client(_player_id, _is_alive, _address, _port, _username, _role);
+                        client.push_back(_client);
+                    }
+                    emit on_get_clients();
                 }
                 else if (status == "fail" || status == "error") {
                     qDebug() << json_object.value("description");

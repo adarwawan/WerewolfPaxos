@@ -26,6 +26,7 @@ private:
 
 private slots:
     void do_changephase(QJsonObject);
+    void do_populate_players();
 };
 
 #endif // GAMEPLAY_H
