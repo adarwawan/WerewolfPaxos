@@ -53,5 +53,20 @@ void gameplay::do_start(QJsonObject json_object)
 
 void gameplay::do_changephase(QJsonObject json_object)
 {
+    QString tPhase = json_object.value("time").toString();
+    if (tPhase == "day") {
+        connection.setCurrentPhase(0);
+    }
+    else {
+        connection.setCurrentPhase(1);
+    }
+    ui->phaseText->setText(tPhase);
 
+    connection.setCurrentDay(json_object.value("days").toInt());
+
+    ui->daysText->setText(QString::number(connection.getCurrentDay()));
+
+    QJsonObject json_address;
+    json_address.insert("method", "client_address");
+    connection.sendMessage(json_address);
 }

@@ -15,7 +15,7 @@ class comm_client : public QObject
 {
     Q_OBJECT
 public:
-    explicit comm_client(QObject *parent = 0);
+    explicit comm_client(QObject *parent = 0, comm_server *server = NULL);
     void SendMessage(QString s);
     void SendMessage(QString recv_address, int recv_port,QJsonObject message);
     void prepareProposal(QJsonObject json_object);
@@ -47,6 +47,7 @@ private:
     int current_day;
     int is_kpu;
     QString friends;
+    comm_server *server;
 
 };
 

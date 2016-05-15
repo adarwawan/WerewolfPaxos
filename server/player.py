@@ -1,8 +1,9 @@
 class Player:
-	def __init__ (self, pid, address, iport, username, role):
+	def __init__ (self, pid, address, iport, uport, username, role):
 		self.id = pid
 		self.address = address
 		self.iport = iport
+		self.uport = uport
 		self.username = username
 		self.role = role
 		self.alive = True
@@ -19,8 +20,11 @@ class Player:
 	def getIPort (self):
 		return self.iport
 
+	def getUPort (self):
+		return self.uport
+
 	def getName (self):
-		return self.name
+		return self.username
 
 	def getRole (self):
 		return self.role
@@ -44,6 +48,9 @@ class Player:
 
 	def setIPort (self, iport):
 		self.iport = iport
+
+	def setUPort (self, uport):
+		self.uport = uport
 
 	def kill (self):
 		self.alive = False
@@ -73,4 +80,4 @@ class Player:
 	# 	self.can_vote = False
 
 	def __del__ (self):
-		print "Player [ " +  self.name + " ("  + str(self.id) + ") ] exited"
+		print "Player [ " +  self.username + " ("  + str(self.id) + ") ] exited"

@@ -212,7 +212,6 @@ void comm_server::readMessage()
                 QJsonObject json_object_respond;
                 json_object_respond.insert("status", "ok");
                 connection.sendMessage(json_object_respond);
-                player_role = json_object.value("role").toString();
                 emit on_start(json_object);
             }
             else if (method == "change_phase") {

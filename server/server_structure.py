@@ -17,7 +17,7 @@ class GameServer:
 		self.n_online = 0
 		self.kpu_id = -1
 		self.MAX_VOTE = 2
-		self.MIN_PLAYERS = 2
+		self.MIN_PLAYERS = 6
 		self.vote_limit = self.MAX_VOTE
 
 	def getPlayerList (self):
@@ -61,34 +61,38 @@ class GameServer:
 		msg = json.dumps(message,separators=(',',':'))
 		for player in self.players:
 			if player != "":
-				player.getIPort().send(msg + "\r\n")
+				# player.getIPort().send(msg + "\r\n")
+				player.getIPort().send(msg + "\n")
 
 	def broadcastByPID (self, pid, message):
 		msg = json.dumps(message,separators=(',',':'))
 		player = self.players[pid]
 		if player != "":
-			player.getIPort().send(msg + "\r\n")
+			# player.getIPort().send(msg + "\r\n")
+			player.getIPort().send(msg + "\n")
 
 
-	def newPlayer (self, username, iport, address):
+	def newPlayer (self, username, iport, uport, address):
 		i = 0
 		for x in self.players:
 			if ( x == "" ):
-				self.players[i] = Player(i, address, iport, username, 1 if (i % 3 > 0) else 0)
+				self.players[i] = Player(i, address, iport, uport, username, 1 if ((i+1) % 3 == 0) else 0)
 				self.usernames[i] = username
 				self.n_online += 1
-				self.game.addPlayer(i, 1 if (i % 3 > 0) else 0)
+				self.game.addPlayer(i, 1 if ((i+1) % 3 == 0) else 0)
 				return i
 			i += 1
 		return None
 
-	def joinPlayer (self, username, iport, address):
+	def joinPlayer (self, username, iport, uport, address):
 		pid = self.usernames.index(username)
 		self.players[pid].setIPort(iport)
+		self.players[pid].setUPort(uport)
 		self.players[pid].setAddress(address)
 		return pid
 
 	def delPlayer (self, pid):
+		self.game.delPlayer(pid)
 		self.ready[pid] = 0
 		self.players[pid] = ""
 		self.usernames[pid] = ""
@@ -105,9 +109,10 @@ class GameServer:
 	def voteKPU (self, pid, kpu_id):
 		if self.can_vote[pid]:
 			self.votes[pid] = kpu_id
-			if self.votes.count(kpu_id) > (n_online/2):
+			if self.votes.count(kpu_id) > ((self.n_online-2)/2):
 				self.kpu_id = kpu_id
-				setAllVoteStatus(False)
+				self.setAllVoteStatus(False)
+				return self.kpu_id
 			return -1
 		else:
 			return -2
@@ -123,8 +128,9 @@ class GameServer:
 	def voteKill (self, kpu_id, pid):
 		if self.kpu_id == kpu_id:
 			self.players[pid].kill()
-			resetVotes()
-			setAllVoteStatus(True)
+			self.resetVotes()
+			self.setAllVoteStatus(True)
+			self.game.killWolf() if self.players[pid].getRole() == 1 else self.game.killCiv()
 
 	def reduceVoteLimit (self, reduction):
 		self.vote_limit -= reduction
@@ -154,7 +160,8 @@ class MessageServer:
 					# data += msg
 
 				msg = clientsocket.recv(4096)
-				msg = msg.split("\r\n", 1)
+				# msg = msg.split("\r\n", 1)
+				msg = msg.split("\n", 1)
 				data = msg[0]
 				if not data:
 					break
@@ -173,112 +180,25 @@ class MessageServer:
 
 		if 'method' in msg:
 			if msg['method'] == 'join':
-				joinResponse(msg, clientsocket, GameServer)
-				# if msg['username'] == "":
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
-				# elif msg['username'] in GameServer.getUsernameList():
-				# 	index = GameServer.getUsernameList().index(msg['username'])
-				# 	if not GameServer.getPlayerList()[index].isOnline():
-				# 		self.clientid = GameServer.joinPlayer(msg['username'], clientsocket, clientaddr)
-				# 		self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
-				# 	else:
-				# 		self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
-				# elif GameServer.getGame().isStarted():
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please wait, game is currently running"}))
-				# elif "" not in GameServer.getUsernameList():
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
-				# else:
-				# 	self.clientid = GameServer.newPlayer(msg['username'], clientsocket, clientaddr)
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":self.clientid}))
+				self.joinResponse(msg, clientsocket, GameServer)
 
 			elif msg['method'] == 'leave':
-				leaveResponse(msg, clientsocket, GameServer)
-				# if not GameServer.getGame().isStarted():
-				# 	GameServer.playerQuit(self.clientid)
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"ok"}))
-				# else:
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"game has started"}))
+				self.leaveResponse(msg, clientsocket, GameServer)
 
 			elif msg['method'] == 'ready':
-				readyResponse(msg, clientsocket, GameServer)
-				# GameServer.getReadyList()[self.clientid] = 1
-				# self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":"waiting for other player to start"}))
-				# n_ready = 0
-				# n_players = 0
-				# for player in GameServer.getPlayerList():
-				# 	if player != "":
-				# 		n_players += 1
-				# if n_players >= GameServer.getMinPlayers():
-				# 	for r in GameServer.getReadyList():
-				# 		if r == 1:
-				# 			n_ready += 1
-				# 	if n_ready == n_players:
-				# 		# different message per role
-				# 		for player in GameServer.getPlayerList():
-				# 			if player != "":
-				# 				self.sendResponse(clientsocket, json.dumps({"method":"start", "time":"day", "role":player.getRoleName(), "friend":GameServer.getWolfList() if player.getRole() == 1 else "", "description":"game is started"}))
+				self.readyResponse(msg, clientsocket, GameServer)
 					
 			elif msg['method'] == 'client_address':
-				clientAddressResponse(msg, clientsocket, GameServer)
-				# lst = []
-				# for player in GameServer.getPlayerList():
-				# 	if player != "":
-				# 		player_data = []
-				# 		lst.append({"player_id":player.getID(), "is_alive":player.isAlive(), "address":player.getAddress(), "port":player.getIPort(), "username":player.getName()})
-				# self.sendResponse(clientsocket, json.dumps({"status":"ok", "clients":lst, "description":"list of clients retrieved"}))
+				self.clientAddressResponse(msg, clientsocket, GameServer)
 
 			elif msg['method'] == 'accepted_proposal':
-				acceptedProposalResponse(msg, clientsocket, GameServer)
-				# if msg['kpu_id'] > -1:
-				# 	if GameServer.voteKPU(clientid, msg['kpu_id']):
-				# 		self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
-				# 	else:
-				# 		self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"voting ended"}))
-				# else:
-				# 	self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid id"}))
+				self.acceptedProposalResponse(msg, clientsocket, GameServer)
 
 			elif msg['method'] == 'vote_result_werewolf':
-				voteResultResponse(msg, clientsocket, 0, GameServer)
-				# convert to function
-			# 	if self.clientid == GameServer.getKPUID() and GameServer.getGame().getTime() == 0:
-			# 		if msg['vote_status'] == 1:
-			# 			voteKill(msg['player_killed'])
-			# 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
-			# 			win = GameServer.getGame().checkWin()
-			# 			if win == -1:
-			# 				GameServer.getGame().advanceTime()
-			# 				GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
-			# 			else:
-			# 				GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
-			# 		elif msg['vote_status'] == -1:
-			# 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
-			# 		else:
-			# 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid status"}))
-			# 	else:
-			# 		self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid kpu"}))
+				self.voteResultResponse(msg, clientsocket, 0, GameServer)
 
 			elif msg['method'] == 'vote_result_civilian':
-				voteResultResponse(msg, clientsocket, 1, GameServer)
-			# 	if clientid == GameServer.getKPUID() and GameServer.getGame().getTime() == 1:
-			# 		if msg['vote_status'] == 1:
-			# 			voteKill(msg['player_killed'])
-			# 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
-			# 			win = GameServer.getGame().checkWin()
-			# 			if win == -1:
-			# 				GameServer.getGame().advanceTime()
-			# 				GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
-			# 			else:
-			# 				GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
-			# 		elif msg['vote_status'] == -1:
-			# 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
-			# 			if not GameServer.reduceVoteLimit(1):
-			# 				GameServer.getGame().advanceTime()
-			# 				GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
-			# 				GameServer.resetVoteLimit()
-			# 		else:
-			# 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid status"}))
-			# 	else:
-			# 		self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid kpu"}))
+				self.voteResultResponse(msg, clientsocket, 1, GameServer)
 
 			else:
 				self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"invalid request"}))
@@ -304,19 +224,19 @@ class MessageServer:
 			self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"please wait, game is currently running"}))
 		else:
 			if msg['username'] == "":
-					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
-				elif msg['username'] in GameServer.getUsernameList():
-					index = GameServer.getUsernameList().index(msg['username'])
-					if not GameServer.getPlayerList()[index].isOnline():
-						self.clientid = GameServer.joinPlayer(msg['username'], msg['udp_port'], msg['udp_address'])
-						self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
-					else:
-						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
-				elif "" not in GameServer.getUsernameList():
-					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
+				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid username"}))
+			elif msg['username'] in GameServer.getUsernameList():
+				index = GameServer.getUsernameList().index(msg['username'])
+				if not GameServer.getPlayerList()[index].isOnline():
+					self.clientid = GameServer.joinPlayer(msg['username'], clientsocket, msg['udp_port'], msg['udp_address'])
+					self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":GameServer.getPlayerList()[index].getID()}))
 				else:
-					self.clientid = GameServer.newPlayer(msg['username'], msg['udp_port'], msg['udp_address'])
-					self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":self.clientid}))
+					self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"user exists"}))
+			elif "" not in GameServer.getUsernameList():
+				self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"full room"}))
+			else:
+				self.clientid = GameServer.newPlayer(msg['username'], clientsocket, msg['udp_port'], msg['udp_address'])
+				self.sendResponse(clientsocket, json.dumps({"status":"ok", "player_id":self.clientid}))
 
 	def leaveResponse (self, msg, clientsocket, GameServer):
 		if self.clientid < 0:
@@ -346,10 +266,11 @@ class MessageServer:
 					if r == 1:
 						n_ready += 1
 				if n_ready == n_players:
+					GameServer.getGame().startGame()
 					# different message per role
 					for player in GameServer.getPlayerList():
 						if player != "":
-							self.sendResponse(clientsocket, json.dumps({"method":"start", "time":"day", "role":player.getRoleName(), "friend":GameServer.getWolfList() if player.getRole() == 1 else "", "description":"game is started"}))
+							self.sendResponse(player.getIPort(), json.dumps({"method":"start", "time":"day", "role":player.getRoleName(), "friend":GameServer.getWolfList() if player.getRole() == 1 else "", "description":"game is started"}))
 
 	def clientAddressResponse (self, msg, clientsocket, GameServer):
 		if self.clientid < 0:
@@ -360,9 +281,9 @@ class MessageServer:
 				if player != "":
 					player_data = []
 					if player.isAlive():
-						lst.append({"player_id":player.getID(), "is_alive":1, "address":player.getAddress(), "port":player.getIPort(), "username":player.getName()})
+						lst.append({"player_id":player.getID(), "is_alive":1, "address":player.getAddress(), "port":player.getUPort(), "username":player.getName()})
 					else:
-						lst.append({"player_id":player.getID(), "is_alive":0, "address":player.getAddress(), "port":player.getIPort(), "username":player.getName(), "role":player.getRoleName()})
+						lst.append({"player_id":player.getID(), "is_alive":0, "address":player.getAddress(), "port":player.getUPort(), "username":player.getName(), "role":player.getRoleName()})
 			self.sendResponse(clientsocket, json.dumps({"status":"ok", "clients":lst, "description":"list of clients retrieved"}))
 
 	def acceptedProposalResponse(self, msg, clientsocket, GameServer):
@@ -375,11 +296,12 @@ class MessageServer:
 				self.sendResponse(clientsocket, json.dumps({"status":"error", "description":"wrong request"}))
 			else:
 				if msg['kpu_id'] > -1:
-					result = GameServer.voteKPU(clientid, msg['kpu_id'])
+					result = GameServer.voteKPU(self.clientid, msg['kpu_id'])
 					if result > -2:
 						self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
 						if result > -1:
 							GameServer.broadcastAll({"method":"kpu_selected", "kpu_id":result})
+							GameServer.broadcastAll({"method":"vote_now", "phase":GameServer.getGame().getTimeName()})
 					else:
 						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"voting ended"}))
 				else:
@@ -406,14 +328,16 @@ class MessageServer:
 								vote_result = -1
 
 						if vote_result == msg['player_killed']:
-							voteKill(msg['player_killed'])
+							GameServer.voteKill(self.clientid, msg['player_killed'])
 							self.sendResponse(clientsocket, json.dumps({"status":"ok", "description":""}))
 							GameServer.resetVoteLimit()
 							win = GameServer.getGame().checkWin()
 							if win == -1:
 								GameServer.getGame().advanceTime()
 								GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
+								GameServer.broadcastAll({"method":"vote_now", "phase":GameServer.getGame().getTimeName()})
 							else:
+								GameServer.getGame().stopGame()
 								GameServer.broadcastAll({"method":"game_over", "winner": "civilian" if win == 0 else "werewolf", "days":GameServer.getGame().getTurn(), "description":""})
 						else:
 							self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"wrong vote result"}))
@@ -421,6 +345,7 @@ class MessageServer:
 						if not GameServer.reduceVoteLimit(mode):
 							GameServer.getGame().advanceTime()
 							GameServer.broadcastAll({"method":"change_phase", "time":GameServer.getGame().getTimeName(), "days":GameServer.getGame().getTurn(), "description":""})
+							GameServer.broadcastAll({"method":"vote_now", "phase":GameServer.getGame().getTimeName()})
 							GameServer.resetVoteLimit()
 					else:
 						self.sendResponse(clientsocket, json.dumps({"status":"fail", "description":"invalid status"}))
@@ -457,7 +382,8 @@ class MessageServer:
 
 	def sendResponse (self, clientsocket, msg):
 		print msg
-		clientsocket.send(msg +"\r\n")
+		# clientsocket.send(msg +"\r\n")
+		clientsocket.send(msg +"\n")
 
 	def __del__ (self):
 		if self.GameServer.getGame().isStarted():

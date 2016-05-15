@@ -5,6 +5,7 @@
 #include <QHostAddress>
 #include <QNetworkInterface>
 #include "comm_server.h"
+#include "comm_client.h"
 
 namespace Ui {
 class login;

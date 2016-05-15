@@ -682,6 +682,9 @@ moc_login.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		../WerewolfClient/login.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I'/home/kevin/Documents/WerewolfPaxos/client/punya wawan - takut konflik/WerewolfClient' -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../WerewolfClient/login.h -o moc_login.cpp
 
@@ -936,6 +939,9 @@ moc_interface.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		../WerewolfClient/ready.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget \
 		../WerewolfClient/gameplay.h \
@@ -1152,10 +1158,11 @@ moc_gameplay.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		../WerewolfClient/gameplay.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I'/home/kevin/Documents/WerewolfPaxos/client/punya wawan - takut konflik/WerewolfClient' -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../WerewolfClient/gameplay.h -o moc_gameplay.cpp
 
-moc_comm_client.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobject.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qnamespace.h \
+moc_comm_client.cpp: ../WerewolfClient/comm_server.h \
+		../WerewolfClient/listplayer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QString \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qstring.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qchar.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qglobal.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qconfig.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfeatures.h \
@@ -1185,13 +1192,15 @@ moc_comm_client.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qmutex.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qnumeric.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qversiontagging.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qstring.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qchar.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbytearray.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qrefcount.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qnamespace.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qarraydata.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobject.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qlist.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qalgorithms.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiterator.h \
@@ -1212,8 +1221,8 @@ moc_comm_client.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
@@ -1227,8 +1236,13 @@ moc_comm_client.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QString \
 		../WerewolfClient/comm_client.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I'/home/kevin/Documents/WerewolfPaxos/client/punya wawan - takut konflik/WerewolfClient' -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../WerewolfClient/comm_client.h -o moc_comm_client.cpp
 
@@ -1385,6 +1399,9 @@ main.o: ../WerewolfClient/main.cpp ../WerewolfClient/interface.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		../WerewolfClient/ready.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget \
 		../WerewolfClient/gameplay.h \
@@ -1525,6 +1542,9 @@ login.o: ../WerewolfClient/login.cpp ../WerewolfClient/login.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		ui_login.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVariant \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QAction \
@@ -1872,6 +1892,9 @@ interface.o: ../WerewolfClient/interface.cpp ../WerewolfClient/interface.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		../WerewolfClient/ready.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget \
 		../WerewolfClient/gameplay.h
@@ -2181,10 +2204,11 @@ gameplay.o: ../WerewolfClient/gameplay.cpp ../WerewolfClient/gameplay.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gameplay.o ../WerewolfClient/gameplay.cpp
 
 comm_client.o: ../WerewolfClient/comm_client.cpp ../WerewolfClient/comm_client.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobject.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qnamespace.h \
+		../WerewolfClient/comm_server.h \
+		../WerewolfClient/listplayer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QString \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qstring.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qchar.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qglobal.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qconfig.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfeatures.h \
@@ -2214,13 +2238,15 @@ comm_client.o: ../WerewolfClient/comm_client.cpp ../WerewolfClient/comm_client.h
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qmutex.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qnumeric.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qversiontagging.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qstring.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qchar.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbytearray.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qrefcount.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qnamespace.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qarraydata.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobject.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qlist.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qalgorithms.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiterator.h \
@@ -2241,8 +2267,8 @@ comm_client.o: ../WerewolfClient/comm_client.cpp ../WerewolfClient/comm_client.h
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
@@ -2256,8 +2282,13 @@ comm_client.o: ../WerewolfClient/comm_client.cpp ../WerewolfClient/comm_client.h
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QString
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comm_client.o ../WerewolfClient/comm_client.cpp
 
 moc_login.o: moc_login.cpp 
