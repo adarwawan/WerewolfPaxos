@@ -1,6 +1,8 @@
 #include "comm_client.h"
 #include <cstdlib>
 
+comm_server conn_client;
+
 comm_client::comm_client(QObject *parent, comm_server *server)
 {
     // create a QUDP socket

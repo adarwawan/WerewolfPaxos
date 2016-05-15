@@ -2,15 +2,20 @@
 
 interface::interface(QObject *parent) : QObject(parent)
 {
-    connect(&connection, SIGNAL(on_login()), this, SLOT(on_login()));
+    connect(&connection, SIGNAL(on_destroy()), this, SLOT(do_login()));
     /* Creating the user interface */
     w_login = new login;
-    w_ready = new ready;
-    connect(&connection, SIGNAL(on_login()), w_login, SLOT(do_destroy()));
+    w_gameplay = new gameplay;
+    connect(&connection, SIGNAL(on_login()), w_login, SLOT(do_wait_ready()));
+    connect(&connection, SIGNAL(on_ready()), w_login, SLOT(do_wait()));
     w_login->show();
 }
 
-void interface::on_login()
+void interface::do_login()
 {
-    w_ready->show();
+    connect(&connection, SIGNAL(on_start(QJsonObject)), w_gameplay, SLOT(do_start(QJsonObject)));
+    connect(&connection, SIGNAL(on_changephase(QJsonObject)), w_gameplay, SLOT(do_changephase(QJsonObject)));
+    connect(&connection, SIGNAL(on_clients()), w_gameplay, SLOT(do_listclient()));
+    w_login->hide();
+    w_gameplay->show();
 }

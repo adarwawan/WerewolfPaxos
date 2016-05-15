@@ -51,5 +51,6 @@ private:
 
 };
 
+extern comm_server conn_client;
 #endif // COMM_CLIENT_H
 
