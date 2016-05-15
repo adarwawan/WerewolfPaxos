@@ -6,10 +6,6 @@ gameplay::gameplay(QWidget *parent) :
     ui(new Ui::gameplay)
 {
     ui->setupUi(this);
-    ui->listPlayerTable->setColumnCount(1);
-    QStringList tableHeader;
-    tableHeader<<"username";
-    ui->listPlayerTable->setHorizontalHeaderLabels(tableHeader);
 }
 
 gameplay::~gameplay()
@@ -37,5 +33,12 @@ void gameplay::do_changephase(QJsonObject json_object)
 }
 
 void gameplay::do_populate_players(){
-
+    ui->listPlayerTable->setRowCount(connection.getClient().size());
+    ui->listPlayerTable->setColumnCount(1);
+    QStringList tableHeader;
+    tableHeader<<"username";
+    ui->listPlayerTable->setHorizontalHeaderLabels(tableHeader);
+    for (int i = 0; i< connection.getClient().size(); i++) {
+        ui->listPlayerTable->setItem(0, i, new QTableWidgetItem("YA"));
+    }
 }
