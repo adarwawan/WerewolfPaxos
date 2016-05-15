@@ -2,7 +2,9 @@
 #define GAMEPLAY_H
 
 #include <QMainWindow>
+#include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QVector>
 #include "comm_server.h"
 #include "listplayer.h"
@@ -23,8 +25,6 @@ private:
     Ui::gameplay *ui;
 
 private slots:
-    void do_listclient();
-    void do_start(QJsonObject);
     void do_changephase(QJsonObject);
 };
 

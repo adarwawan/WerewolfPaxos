@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>localhost</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="tcp_port">
@@ -63,7 +63,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>55555</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="udp_port">
@@ -76,7 +76,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>1231</string>
     </property>
    </widget>
    <widget class="QLabel" name="username_label">

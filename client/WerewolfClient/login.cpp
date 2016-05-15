@@ -39,10 +39,7 @@ void login::on_buttonPlay_clicked()
     QJsonObject json_object;
     json_object.insert("method", "join");
     json_object.insert("username", nickname.toStdString().c_str());
-    foreach (const QHostAddress &address, QNetworkInterface::allAddresses()) {
-        if (address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost))
-            json_object.insert("udp_address", address.toString());
-    }
+    json_object.insert("udp_address", connection.getLocalAddress().toStdString().c_str());
     json_object.insert("udp_port", client_port);
     connection.sendMessage(json_object);
 }
