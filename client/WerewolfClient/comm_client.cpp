@@ -1,36 +1,23 @@
 #include "comm_client.h"
-<<<<<<< HEAD
-#include <cstdio>
-=======
 #include <cstdlib>
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
 
 comm_client conn_client;
 
-comm_client::comm_client(QObject *parent) : QObject(parent)
+comm_client::comm_client(QObject *parent, comm_server *server)
 {
-
-}
-
-<<<<<<< HEAD
-void comm_client::doListen(quint16 client_port)
-{
+    // create a QUDP socket
     socket = new QUdpSocket(this);
-    connect(socket, SIGNAL(readyRead()), this, SLOT(readMessage()));
+    this->server = server;
 
-    qDebug() << "binding...";
+    // The most common way to use QUdpSocket class is
+    // to bind to an address and port using bind()
+    // bool QAbstractSocket::bind(const QHostAddress & address,
+    //     quint16 port = 0, BindMode mode = DefaultForPlatform)
+    socket->bind(QHostAddress::LocalHost, 1234);
 
-    socket->bind(QHostAddress::Any, client_port);
+    connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 }
 
-void comm_client::sendMessage(QString recv_address, QString recv_port, QJsonObject message)
-{
-    int v1 = rand() % 100;
-    if (v1 < 85) {
-        QJsonDocument json_document;
-        json_document.setObject(message);
-        socket->writeDatagram((json_document.toJson(QJsonDocument::Compact) + "\r\n"), QHostAddress(recv_address), recv_port.toUShort());
-=======
 void comm_client::SendMessage(QString recv_address, int recv_port,QJsonObject message)
 {
     int v1 = rand() % 100;
@@ -41,26 +28,11 @@ void comm_client::SendMessage(QString recv_address, int recv_port,QJsonObject me
     QJsonDocument json_document;
     json_document.setObject(message);
     socket->writeDatagram(json_document.toJson(QJsonDocument::Compact) + "\r\n",QHostAddress(recv_address), recv_port);
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
     }
 }
 
-void comm_client::readMessage()
+void comm_client::readyRead()
 {
-<<<<<<< HEAD
-    while (socket->hasPendingDatagrams()) {
-        QByteArray message;
-        message.resize(socket->pendingDatagramSize());
-
-        QHostAddress sender_ip;
-        quint16 sender_port;
-        socket->readDatagram(message.data(), message.size(), &sender_ip, &sender_port);
-
-        qDebug() << "reading...";
-
-        QList<QByteArray> message_list = message.split('\n');
-        qDebug() << message_list;
-=======
     // when data comes in
     QByteArray buffer;
     buffer.resize(socket->pendingDatagramSize());
@@ -97,26 +69,24 @@ void comm_client::readMessage()
                 QJsonObject tempvote;
                 QString phase = json_object.value("phase").toString();
             if(phase == "day"){
+                QVector<listPlayer> tempTab = server->getClient();
                 tempvote.insert("method", "vote_civilian");
                 tempvote.insert("player_id", player_id);
                 for (int i=0; i<tempTab.length();i++ ){
                     listPlayer l;
-                    l = connection.getClients().at(i);
-                   SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+                    l = connection.getClient().at(i);
+                   SendMessage(l.getUdpAddress(), l.getUdpPort(),tempvote);
                 }
             } else if (phase == "night"){
                 tempvote.insert("method", "vote_werewolf");
                 tempvote.insert("player_id", player_id);
+                 QVector<listPlayer> tempTab = connection.getClient();
                 for (int i=0; i<tempTab.length();i++ ){
                     listPlayer l;
-                    l = connection.getClients().at(i);
-                   SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+                    l = connection.getClient().at(i);
+                   SendMessage(l.getUdpAddress(), l.getUdpPort(),tempvote);
               }
             }
-          } else if(method == "prepare"){
-              propose(player-id);
-          } else if(method == "acc"){
-              accept(player_id);
           }
         }
     }
@@ -145,10 +115,10 @@ void comm_client::prepareProposal(QJsonObject json_object){
             temp.insert("status","fail");
             temp.insert("description", "rejected");
         }
-        QVector<listPlayer> tempTab = connection.getClients();
+        QVector<listPlayer> tempTab = connection.getClient();
         for (int i=0; i<tempTab.length();i++ ){
             listPlayer l;
-            l = connection.getClients().at(i);
+            l = connection.getClient().at(i);
            SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
         }
 }
@@ -169,15 +139,18 @@ void comm_client::acceptProposal(QJsonObject json_object){
         }
 
     }
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
 
+    if (valid){
+        temp.insert("status", "ok");
+        temp.insert("description","accepted");
+    } else {
+        temp.insert("status","fail");
+        temp.insert("description", "rejected");
     }
-<<<<<<< HEAD
-=======
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
+        l = connection.getClient().at(i);
        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
 }
@@ -186,7 +159,7 @@ void comm_client::vote_werewolf(QJsonObject json){
     QString jsonvote;
     QJsonObject temp;
     int player_id = json.value("player_id").toInt();
-    int totalPlayerId = connection.getClients().length();
+    int totalPlayerId = connection.getClient().length();
     if(player_id <= totalPlayerId){
         temp.insert("status", "ok");
         temp.insert("description","vote werewolf accepted");
@@ -196,10 +169,10 @@ void comm_client::vote_werewolf(QJsonObject json){
         temp.insert("status","fail");
         temp.insert("description", "vote werewolf rejected");
     }
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
+        l = connection.getClient().at(i);
        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
 
@@ -210,7 +183,7 @@ void comm_client::vote_civilian(QJsonObject json){
     QJsonObject temp;
 
     int player_id = json.value("player_id").toInt();
-    int totalPlayerId = comm_server::getClients().size();
+    int totalPlayerId = server->getClient().size();
     if(player_id <= totalPlayerId){
         temp.insert("status", "ok");
         temp.insert("description","vote civilian accepted");
@@ -220,10 +193,10 @@ void comm_client::vote_civilian(QJsonObject json){
         temp.insert("status","fail");
         temp.insert("description", "vote civilan rejected");
     }
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
+        l = connection.getClient().at(i);
        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
 
@@ -235,10 +208,10 @@ void comm_client::sendvote_civilian(int player_id){
 
     temp.insert("method","vote_civilian");
     temp.insert("player_id", player_id);
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
+        l = connection.getClient().at(i);
        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
 }
@@ -249,10 +222,10 @@ void comm_client::sendvote_werewolf(int player_id){
 
     temp.insert("method","vote_werewolf");
     temp.insert("player_id", player_id);
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
+        l = connection.getClient().at(i);
        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
 }
@@ -265,13 +238,12 @@ void comm_client::propose(int player_id){
     ja.insert(0,++sequence);
     ja.insert(1, player_id);
     temp.insert("proposal_id", ja);
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
-       SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+        l = connection.getClient().at(i);
+        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
-
 }
 
 void comm_client::accept(int player_id){
@@ -282,11 +254,10 @@ void comm_client::accept(int player_id){
     ja.insert(0,++sequence);
     ja.insert(1, player_id);
     temp.insert("proposal_id", ja);
-    QVector<listPlayer> tempTab = comm_server::getClients();
+    QVector<listPlayer> tempTab = server->getClient();
     for (int i=0; i<tempTab.length();i++ ){
         listPlayer l;
-        l = connection.getClients().at(i);
+        l = connection.getClient().at(i);
        SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
     }
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
 }

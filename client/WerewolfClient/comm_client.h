@@ -4,20 +4,6 @@
 #include "comm_server.h"
 #include <QObject>
 #include <QUdpSocket>
-<<<<<<< HEAD
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonValue>
-#include "comm_server.h"
-
-class comm_client : public QObject
-{
-        Q_OBJECT
-    public:
-        explicit comm_client(QObject *parent = 0);
-        void doListen(quint16 client_port);
-=======
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QTcpSocket>
@@ -29,7 +15,7 @@ class comm_client : public QObject
 {
     Q_OBJECT
 public:
-    explicit comm_client(QObject *parent = 0);
+    explicit comm_client(QObject *parent = 0, comm_server *server = NULL);
     void SendMessage(QString s);
     void SendMessage(QString recv_address, int recv_port,QJsonObject message);
     void prepareProposal(QJsonObject json_object);
@@ -42,15 +28,10 @@ public:
     void accept(int player_id);
 
 signals:
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
 
-    signals:
+public slots:
+    void readyRead();
 
-<<<<<<< HEAD
-    public slots:
-        void readMessage();
-        void sendMessage(QString recv_address, QString recv_port, QJsonObject message);
-=======
 private:
     int totalVote=0;
     QString acc_kpu_id;
@@ -66,17 +47,10 @@ private:
     int current_day;
     int is_kpu;
     QString friends;
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
+    comm_server *server;
 
-    private:
-        QUdpSocket *socket;
 };
 
-/* Universal client connection handler */
 extern comm_client conn_client;
-
 #endif // COMM_CLIENT_H
-<<<<<<< HEAD
-=======
 
->>>>>>> 58aeb9909bcbed8bd7c9e05d07cdba6c2119dc74
