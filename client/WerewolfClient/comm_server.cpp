@@ -7,6 +7,14 @@ comm_server::comm_server(QObject *parent) : QObject(parent)
     last_method = "";
 }
 
+void comm_server::setKpuId(int kpu_id_) {
+    kpu_id = kpu_id_;
+}
+
+int comm_server::getKpuId() {
+    return kpu_id;
+}
+
 void comm_server::doConnect(QString server_ip, quint16 server_port)
 {
     socket = new QTcpSocket(this);

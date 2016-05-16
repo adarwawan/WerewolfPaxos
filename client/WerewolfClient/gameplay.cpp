@@ -6,6 +6,9 @@ gameplay::gameplay(QWidget *parent) :
     ui(new Ui::gameplay)
 {
     ui->setupUi(this);
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), &conn_client, SLOT(prepare_proposal()));
+
 }
 
 gameplay::~gameplay()
@@ -40,5 +43,25 @@ void gameplay::do_populate_players(){
     ui->listPlayerTable->setHorizontalHeaderLabels(tableHeader);
     for (int i = 0; i< connection.getClient().size(); i++) {
         ui->listPlayerTable->setItem(0, i, new QTableWidgetItem("YA"));
+    }
+
+    timer->stop();
+    if ( connection.getCurrentTime() == 1 ) {
+        connection.setKpuId(-1);
+
+        qDebug() << "Start Ngirim Proposal";
+
+        int clientID = static_cast<int>(connection.getPlayerId());
+        if (((clientID + 1) == connection.getClient().size()) || ((clientID + 1) == (connection.getClient().size() - 1)))
+        {
+            /* Ngirim Proposal Terus-terusan sampe kpu_id diterima */
+            qDebug() << "Ngirim Proposal";
+
+            if (connection.getKpuId() == -1){
+                timer->start(1000);
+            } else {
+                timer->stop();
+            }
+        }
     }
 }

@@ -92,6 +92,87 @@ void comm_client::readyRead()
     }
 }
 
+int comm_client::getLastKPU() {
+    return last_KPU;
+}
+
+void comm_client::setCounter(int c) {
+    counter_local = c;
+}
+
+void comm_client::setLastKPU(int c) {
+    last_KPU = c;
+}
+
+int comm_client::getCounterLocal() {
+    return counter_local;
+}
+
+void comm_client::prepare_proposal() {
+    if (connection.getKpuId()) {
+        int size = connection.getClients().size();
+        int newcounter = conn_client.getCounterLocal() + 1;
+        counter_prepare = 0;
+        for (int i = 0; i < size; i++) {
+            QJsonValue playerid;
+            playerid = connection.getPlayerId();
+
+            if (i != playerid.toInt()) {
+                QJsonObject json_object = connection.getClients().at(i).toObject();
+                qDebug() << json_object;
+                QString address = json_object.value("address").toString();
+                quint16 port = json_object.value("port").toInt();
+
+                /* send message */
+                QJsonObject message;
+                QJsonArray json_array;
+
+                json_array.insert(0,newcounter);
+                json_array.insert(1,playerid);
+                qDebug() << "Proposal-id: " << newcounter;
+                qDebug() << "Your player id: " << playerid;
+                conn_client.setCounter(newcounter);
+                message.insert("method", "prepare_proposal");
+                message.insert("proposal_id", json_array);
+
+                conn_client.setLastKPU(playerid.toInt());
+
+            }
+        }
+    }
+}
+
+void comm_client::accept_proposal() {
+    int size = connection.getClients().size();
+    int counter = conn_client.getCounterLocal();
+    counter_prepare = 0;
+    for (int i = 0; i < size; i++) {
+        QJsonValue playerid;
+        playerid = connection.getPlayerId();
+
+        if (i != playerid.toInt()) {
+            QJsonObject json_object = connection.getClients().at(i).toObject();
+            qDebug() << json_object;
+            QString address = json_object.value("address").toString();
+            quint16 port = json_object.value("port").toInt();
+
+            /* send message */
+            QJsonObject message;
+            QJsonArray json_array;
+
+            json_array.insert(0,counter);
+            json_array.insert(1,playerid);
+            //qDebug() << "ini accept";
+            qDebug() << "Proposal-id: " << counter;
+            qDebug() << "Your player id: " << playerid;
+            conn_client.setCounter(counter);
+            message.insert("method", "accept_proposal");
+            message.insert("proposal_id", json_array);
+            message.insert("kpu_id", playerid);
+        }
+    }
+}
+
 void comm_client::prepareProposal(QJsonObject json_object){
     int curid[2];
     QJsonArray json_array = json_object.take("proposal_id").toArray();

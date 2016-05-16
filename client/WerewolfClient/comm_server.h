@@ -33,7 +33,10 @@ public:
     QJsonObject getClientDataById(int);
     int getDeadWerewolf();
     int getDeadPlayer();
-
+    int getKpuId();
+    void setCounter(int c);
+    void setLastKPU(int c);
+    void setKpuId(int id);
     QJsonArray getNonFriends();
     int getCurrentTime();
     void setCurrentTime(QString current_time_);

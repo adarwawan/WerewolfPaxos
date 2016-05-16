@@ -2,11 +2,14 @@
 #define GAMEPLAY_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <QMutex>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QVector>
 #include "comm_server.h"
+#include "comm_client.h"
 #include "listplayer.h"
 
 namespace Ui {
@@ -23,6 +26,7 @@ public:
 
 private:
     Ui::gameplay *ui;
+    QTimer *timer;
 
 private slots:
     void do_changephase(QJsonObject);
