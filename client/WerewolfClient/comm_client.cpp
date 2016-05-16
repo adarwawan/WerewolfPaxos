@@ -137,6 +137,13 @@ void comm_client::prepare_proposal() {
 
                 conn_client.setLastKPU(playerid.toInt());
 
+                QVector<listPlayer> tempTab = connection.getClient();
+                for (int i=0; i<tempTab.length();i++ ){
+                    listPlayer l;
+                    l = connection.getClient().at(i);
+                   SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+                }
+
             }
         }
     }
@@ -169,6 +176,13 @@ void comm_client::accept_proposal() {
             message.insert("method", "accept_proposal");
             message.insert("proposal_id", json_array);
             message.insert("kpu_id", playerid);
+
+            QVector<listPlayer> tempTab = connection.getClient();
+            for (int i=0; i<tempTab.length();i++ ){
+                listPlayer l;
+                l = connection.getClient().at(i);
+               SendMessage(l.getUdpAddress(), l.getUdpPort(),temp);
+            }
         }
     }
 }
