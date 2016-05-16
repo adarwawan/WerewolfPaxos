@@ -27,10 +27,15 @@ public:
 private:
     Ui::gameplay *ui;
     QTimer *timer;
+    QMutex mutex;
 
 private slots:
     void do_changephase(QJsonObject);
     void do_populate_players();
+    void do_proposal_prepare(QJsonObject message, QHostAddress sender_ip, quint16 sender_port);
+    void do_proposal_accept(QJsonObject message, QHostAddress sender_ip, quint16 sender_port);
+    void do_set_kpu_selected();
+    void do_set_rule(QJsonObject message);
 };
 
 #endif // GAMEPLAY_H

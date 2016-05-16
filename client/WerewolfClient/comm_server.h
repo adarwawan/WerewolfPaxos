@@ -42,11 +42,16 @@ public:
     void setCurrentTime(QString current_time_);
 
 signals:
+    void on_fail_or_error(QString);
     void on_login();
     void on_ready();
-    void on_start();
-    void on_changephase(QJsonObject);
     void on_get_clients();
+    void on_start();
+
+    void on_changephase(QJsonObject);
+    void on_kpu_is_selected();
+    void on_game_over(QJsonObject);
+    void on_vote_now();
 
 public slots:
     void connected();

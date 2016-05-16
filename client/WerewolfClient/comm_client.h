@@ -15,9 +15,10 @@ class comm_client : public QObject
 {
     Q_OBJECT
 public:
-    explicit comm_client(QObject *parent = 0, comm_server *server = NULL);
+    explicit comm_client(QObject *parent = 0);
+    void doListen(quint16 client_port);
     void SendMessage(QString s);
-    void SendMessage(QString recv_address, int recv_port,QJsonObject message);
+    void SendMessage(QString recv_address, quint16 recv_port,QJsonObject message, int tag);
     void vote_werewolf(QJsonObject json);
     void vote_civilian(QJsonObject json);
     void sendvote_civilian(int player_id);
@@ -25,14 +26,21 @@ public:
     void propose(int player_id);
     void accept(int player_id);
     int getCounterLocal();
+    int getCounterPrepare();
+    int getCounterAccept();
     void setCounter(int c);
     int getLastKPU();
     void setLastKPU(int c);
+    void resetVote();
     void resetCounter();
+    std::map<int, int> vote_map;
 signals:
+    void on_fail_or_error(QString);
+    void on_accept_prepare_proposal(QJsonObject,QHostAddress,quint16);
+    void on_accept_accept_proposal(QJsonObject, QHostAddress, quint16);
 
 public slots:
-    void readyRead();
+    void readMessage();
     void prepare_proposal();
     void prepareProposal(QJsonObject json_object);
     void acceptProposal(QJsonObject json_object);
@@ -51,12 +59,13 @@ private:
     int player_id;
     QString player_name;
     QString last_method;
+    QString last_sent_method;
     QString player_role;
     int current_phase;
     int current_day;
     int is_kpu;
     QString friends;
-    comm_server *server;
+    int hardcode_player;
 
 };
 

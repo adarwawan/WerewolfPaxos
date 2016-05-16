@@ -676,6 +676,13 @@ moc_login.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		../../WerewolfClient/comm_client.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
@@ -810,10 +817,21 @@ moc_interface.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		../../WerewolfClient/comm_client.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		../../WerewolfClient/gameplay.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QMutex \
 		../../WerewolfClient/interface.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/kevin/Documents/WerewolfPaxos/client/WerewolfClient -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../../WerewolfClient/interface.h -o moc_interface.cpp
 
@@ -877,10 +895,8 @@ moc_comm_server.cpp: ../../WerewolfClient/listplayer.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonobject.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QHostAddress \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
@@ -894,10 +910,60 @@ moc_comm_server.cpp: ../../WerewolfClient/listplayer.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QNetworkInterface \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qnetworkinterface.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsize.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcursor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qmargins.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qrect.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpalette.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcolor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgb.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qregion.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qline.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qevent.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurlquery.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfile.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qvector2d.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		../../WerewolfClient/comm_server.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/kevin/Documents/WerewolfPaxos/client/WerewolfClient -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../../WerewolfClient/comm_server.h -o moc_comm_server.cpp
 
@@ -1008,22 +1074,40 @@ moc_gameplay.cpp: /home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qicon.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QMutex \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonobject.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
 		../../WerewolfClient/comm_server.h \
 		../../WerewolfClient/listplayer.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QString \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QHostAddress \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QNetworkInterface \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qnetworkinterface.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
 		../../WerewolfClient/gameplay.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/kevin/Documents/WerewolfPaxos/client/WerewolfClient -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../../WerewolfClient/gameplay.h -o moc_gameplay.cpp
 
@@ -1088,10 +1172,8 @@ moc_comm_client.cpp: ../../WerewolfClient/comm_server.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonobject.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QHostAddress \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
@@ -1105,13 +1187,62 @@ moc_comm_client.cpp: ../../WerewolfClient/comm_server.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QNetworkInterface \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qnetworkinterface.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsize.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcursor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qmargins.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qrect.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpalette.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcolor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgb.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qregion.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qline.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qevent.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurlquery.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfile.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qvector2d.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
 		../../WerewolfClient/comm_client.h
 	/home/kevin/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kevin/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/kevin/Documents/WerewolfPaxos/client/WerewolfClient -I/home/kevin/Qt5.6.0/5.6/gcc_64/include -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork -I/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore -I. ../../WerewolfClient/comm_client.h -o moc_comm_client.cpp
 
@@ -1265,17 +1396,21 @@ main.o: ../../WerewolfClient/main.cpp ../../WerewolfClient/interface.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
-		../../WerewolfClient/comm_client.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
-		../../WerewolfClient/gameplay.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
+		../../WerewolfClient/gameplay.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QMutex
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../WerewolfClient/main.cpp
 
 login.o: ../../WerewolfClient/login.cpp ../../WerewolfClient/login.h \
@@ -1406,10 +1541,56 @@ login.o: ../../WerewolfClient/login.cpp ../../WerewolfClient/login.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		../../WerewolfClient/comm_client.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
-		ui_login.h
+		ui_login.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVariant \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QAction \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qaction.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QHeaderView \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qframe.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qvalidator.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qregularexpression.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qslider.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyle.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QLabel \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlabel.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QLineEdit \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextcursor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextformat.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpen.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextoption.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QTextBrowser \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtextbrowser.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtextedit.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextdocument.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o ../../WerewolfClient/login.cpp
 
 interface.o: ../../WerewolfClient/interface.cpp ../../WerewolfClient/interface.h \
@@ -1541,10 +1722,21 @@ interface.o: ../../WerewolfClient/interface.cpp ../../WerewolfClient/interface.h
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		../../WerewolfClient/comm_client.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
-		../../WerewolfClient/gameplay.h
+		../../WerewolfClient/gameplay.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QMutex
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o interface.o ../../WerewolfClient/interface.cpp
 
 comm_server.o: ../../WerewolfClient/comm_server.cpp ../../WerewolfClient/comm_server.h \
@@ -1608,10 +1800,8 @@ comm_server.o: ../../WerewolfClient/comm_server.cpp ../../WerewolfClient/comm_se
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonobject.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QHostAddress \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
@@ -1625,10 +1815,60 @@ comm_server.o: ../../WerewolfClient/comm_server.cpp ../../WerewolfClient/comm_se
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QNetworkInterface \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qnetworkinterface.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsize.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcursor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qmargins.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qrect.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpalette.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcolor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgb.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qregion.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qline.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qevent.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurlquery.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfile.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qvector2d.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comm_server.o ../../WerewolfClient/comm_server.cpp
 
 listplayer.o: ../../WerewolfClient/listplayer.cpp ../../WerewolfClient/listplayer.h \
@@ -1779,23 +2019,86 @@ gameplay.o: ../../WerewolfClient/gameplay.cpp ../../WerewolfClient/gameplay.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qicon.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QMutex \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonobject.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
 		../../WerewolfClient/comm_server.h \
 		../../WerewolfClient/listplayer.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QString \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QObject \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QHostAddress \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QNetworkInterface \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qnetworkinterface.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
-		ui_gameplay.h
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../../WerewolfClient/comm_client.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
+		ui_gameplay.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVariant \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QAction \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qaction.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QFrame \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qframe.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QHeaderView \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qvalidator.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qregularexpression.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qslider.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyle.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QLabel \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlabel.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QLineEdit \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextcursor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextformat.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpen.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextoption.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QStatusBar \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QTableWidget \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtablewidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtableview.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QTextBrowser \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtextbrowser.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtextedit.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextdocument.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gameplay.o ../../WerewolfClient/gameplay.cpp
 
 comm_client.o: ../../WerewolfClient/comm_client.cpp ../../WerewolfClient/comm_client.h \
@@ -1860,10 +2163,8 @@ comm_client.o: ../../WerewolfClient/comm_client.cpp ../../WerewolfClient/comm_cl
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonObject \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonobject.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonvalue.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QHostAddress \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qabstractsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
@@ -1877,13 +2178,62 @@ comm_client.o: ../../WerewolfClient/comm_client.cpp ../../WerewolfClient/comm_cl
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QNetworkInterface \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qnetworkinterface.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonArray \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsonarray.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QTcpSocket \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qtcpsocket.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonDocument \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QJsonValue \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/QVector \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsize.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcursor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qmargins.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qrect.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpalette.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qcolor.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgb.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qregion.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qline.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qevent.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurl.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qurlquery.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfile.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qvector2d.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
 		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/QUdpSocket \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h \
-		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qhostaddress.h
+		/home/kevin/Qt5.6.0/5.6/gcc_64/include/QtNetwork/qudpsocket.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comm_client.o ../../WerewolfClient/comm_client.cpp
 
 moc_login.o: moc_login.cpp 
