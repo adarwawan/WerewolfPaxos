@@ -65,6 +65,10 @@ void gameplay::do_populate_players(){
         listPlayer ap = connection.getClient().at(i);
         QString aa = ap.getUsername();
         ui->listPlayerTable->setItem(0, i, new QTableWidgetItem(aa));
+        if (ap.getIsAlive() == 0) {
+            ui->listPlayerTable->setItem(0, i, new QTableWidgetItem("[DEAD] " + aa));
+        }
+
     }
 
     timer->stop();
@@ -171,4 +175,22 @@ void gameplay::do_proposal_accept(QJsonObject message, QHostAddress sender_ip, q
         conn_client.SendMessage(sender_ip.toString(), sender_port, json_object,0);
     }
     mutex.unlock();
+}
+
+void gameplay::on_killButton_clicked()
+{
+    QJsonObject json_object;
+    ui->killButton->setDisabled(true);
+    int to_killed = ui->voteEdit->text().toInt();
+    to_killed--;
+    QString ap = QString::number(to_killed);
+    if (connection.getCurrentTime() == 0) {
+        json_object.insert("method", "vote_werewolf");
+    }
+    else {
+        json_object.insert("method", "vote_civilian");
+    }
+    json_object.insert("player_id", to_killed);
+    //Kirim to Client
+    //connection.sendMessage(json_object);
 }

@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QVector>
+#include <QColor>
 #include "comm_server.h"
 #include "comm_client.h"
 #include "listplayer.h"
@@ -36,6 +37,7 @@ private slots:
     void do_proposal_accept(QJsonObject message, QHostAddress sender_ip, quint16 sender_port);
     void do_set_kpu_selected();
     void do_set_rule(QJsonObject message);
+    void on_killButton_clicked();
 };
 
 #endif // GAMEPLAY_H
