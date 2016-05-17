@@ -7,6 +7,7 @@ login::login(QWidget *parent) :
     nickname("user_name")
 {
     ui->setupUi(this);
+    ui->buttonReady->setDisabled(true);
 }
 
 login::~login()
@@ -27,6 +28,7 @@ void login::do_wait_ready() {
 
 void login::on_buttonPlay_clicked()
 {
+    ui->buttonReady->setDisabled(false);
     nickname = ui->username->text();
     connection.setPlayerName(nickname);
     QString server_ip = ui->address->text();
