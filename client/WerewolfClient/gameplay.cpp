@@ -173,7 +173,7 @@ void gameplay::do_proposal_accept(QJsonObject message, QHostAddress sender_ip, q
         QJsonObject json_object_;
         json_object_.insert("method", "accepted_proposal");
         json_object_.insert("kpu_id", conn_client.getLastKPU());
-        json_object_.insert("Description", "Kpu is selected");
+        json_object_.insert("description", "Kpu is selected");
 
         connection.sendMessage(json_object_);
 
