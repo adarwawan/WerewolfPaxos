@@ -40,6 +40,7 @@ private slots:
     void on_killButton_clicked();
     void do_game_over(QJsonObject);
     void on_leaveButton_clicked();
+    void do_vote_now();
 };
 
 #endif // GAMEPLAY_H

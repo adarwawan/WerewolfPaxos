@@ -9,6 +9,7 @@ gameplay::gameplay(QWidget *parent) :
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), &conn_client, SLOT(prepare_proposal()));
     ui->leaveButton->setDisabled(true);
+    ui->killButton->setDisabled(true);
 }
 
 gameplay::~gameplay()
@@ -210,4 +211,8 @@ void gameplay::on_leaveButton_clicked()
     QJsonObject json_object;
     json_object.insert("method", "leave");
     connection.sendMessage(json_object);
+}
+
+void gameplay::do_vote_now() {
+    ui->killButton->setDisabled(false);
 }

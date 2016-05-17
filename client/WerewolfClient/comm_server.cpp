@@ -283,7 +283,7 @@ void comm_server::readMessage()
             }
             else if (method == "vote_now") {
                 qDebug() << "ini vote now";
-                //emit on_vote_now();
+                emit on_vote_now();
             }
             else if (method == "game_over") {
                 qDebug() << "ini game over";

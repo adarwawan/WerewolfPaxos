@@ -282,7 +282,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>leaveButton</string>
+     <string/>
     </property>
    </widget>
   </widget>
