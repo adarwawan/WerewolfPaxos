@@ -192,15 +192,27 @@ void gameplay::on_killButton_clicked()
     int to_killed = ui->voteEdit->text().toInt();
     to_killed--;
     QString ap = QString::number(to_killed);
-    if (connection.getCurrentTime() == 0) {
+    /*if (connection.getCurrentTime() == 0) {
         json_object.insert("method", "vote_werewolf");
     }
     else {
         json_object.insert("method", "vote_civilian");
     }
     json_object.insert("player_id", to_killed);
+    */
     //Kirim to Client
-    //connection.sendMessage(json_object);
+    if (connection.getCurrentTime() == 0) {
+        json_object.insert("method", "vote_result_civilian");
+    }
+    else {
+        json_object.insert("method", "vote_result_werewolf");
+    }
+
+    json_object.insert("vote_status", 1);
+    json_object.insert("player_killed", idx);
+    json_object.insert("vote_result", "");
+    idx++;
+    connection.sendMessage(json_object);
 }
 
 void gameplay::do_game_over(QJsonObject message) {

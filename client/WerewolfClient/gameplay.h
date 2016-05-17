@@ -24,6 +24,7 @@ class gameplay : public QMainWindow
 public:
     explicit gameplay(QWidget *parent = 0);
     ~gameplay();
+    int idx = 0;
 
 private:
     Ui::gameplay *ui;
