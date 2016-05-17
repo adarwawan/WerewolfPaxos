@@ -38,6 +38,7 @@ private slots:
     void do_set_kpu_selected();
     void do_set_rule(QJsonObject message);
     void on_killButton_clicked();
+    void do_game_over(QJsonObject);
 };
 
 #endif // GAMEPLAY_H

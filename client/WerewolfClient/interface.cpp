@@ -20,5 +20,5 @@ void interface::do_login()
     connect(&conn_client, SIGNAL(on_accept_prepare_proposal(QJsonObject, QHostAddress, quint16)), w_gameplay, SLOT(do_proposal_prepare(QJsonObject,QHostAddress,quint16)));
     connect(&conn_client, SIGNAL(on_accept_accept_proposal(QJsonObject, QHostAddress, quint16)), w_gameplay, SLOT(do_proposal_accept(QJsonObject,QHostAddress,quint16)));
     connect(&connection, SIGNAL(on_kpu_is_selected()), w_gameplay, SLOT(do_set_kpu_selected()));
-
+    connect(&connection, SIGNAL(on_game_over(QJsonObject)), w_gameplay, SLOT(do_game_over(QJsonObject)));
 }

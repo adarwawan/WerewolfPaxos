@@ -194,3 +194,10 @@ void gameplay::on_killButton_clicked()
     //Kirim to Client
     //connection.sendMessage(json_object);
 }
+
+void gameplay::do_game_over(QJsonObject message) {
+    ui->killButton->setDisabled(true);
+    ui->killButton->setText("GAME OVER");
+    QString winner = message.value("winner").toString();
+    ui->statusbar->showMessage("Winner : " + winner);
+}

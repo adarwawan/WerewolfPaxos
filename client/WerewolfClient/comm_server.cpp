@@ -287,6 +287,7 @@ void comm_server::readMessage()
             }
             else if (method == "game_over") {
                 qDebug() << "ini game over";
+                emit on_game_over(json_object);
             }
         }
     }

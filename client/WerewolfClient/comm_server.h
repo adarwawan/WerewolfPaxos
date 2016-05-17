@@ -50,8 +50,8 @@ signals:
 
     void on_changephase(QJsonObject);
     void on_kpu_is_selected();
-    void on_game_over(QJsonObject);
     void on_vote_now();
+    void on_game_over(QJsonObject);
 
 public slots:
     void connected();
