@@ -62,7 +62,9 @@ void gameplay::do_populate_players(){
     tableHeader<<"username";
     ui->listPlayerTable->setHorizontalHeaderLabels(tableHeader);
     for (int i = 0; i< connection.getClient().size(); i++) {
-        ui->listPlayerTable->setItem(0, i, new QTableWidgetItem("YA"));
+        listPlayer ap = connection.getClient().at(i);
+        QString aa = ap.getUsername();
+        ui->listPlayerTable->setItem(0, i, new QTableWidgetItem(aa));
     }
 
     timer->stop();
