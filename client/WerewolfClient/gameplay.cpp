@@ -29,6 +29,11 @@ void gameplay::do_changephase(QJsonObject json_object)
     ui->daysText->setText(QString::number(json_object.value("days").toInt()));
     if (json_object.contains("friend")) {
         QJsonArray data = json_object.value("friend").toArray();
+        QString friends = "";
+        for (int i = 0; i < data.count(); i++) {
+            friends = friends + data.at(i).toString() + ", ";
+        }
+        ui->friendText->setText(friends);
     }
 
     QJsonObject json_address;
@@ -65,10 +70,12 @@ void gameplay::do_populate_players(){
     for (int i = 0; i< connection.getClient().size(); i++) {
         listPlayer ap = connection.getClient().at(i);
         QString aa = ap.getUsername();
-        ui->listPlayerTable->setItem(0, i, new QTableWidgetItem(aa));
+
         if (ap.getIsAlive() == 0) {
-            ui->listPlayerTable->setItem(0, i, new QTableWidgetItem("[DEAD] " + aa));
+            aa = "[DEAD] " + aa;
         }
+
+        ui->listPlayerTable->setItem(0, i, new QTableWidgetItem(aa));
 
     }
 
