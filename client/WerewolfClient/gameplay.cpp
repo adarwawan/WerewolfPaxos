@@ -214,5 +214,14 @@ void gameplay::on_leaveButton_clicked()
 }
 
 void gameplay::do_vote_now() {
-    ui->killButton->setDisabled(false);
+    int i = connection.getPlayerId();
+    listPlayer as = connection.getClient().at(i);
+    if (as.getIsAlive() == 0) {
+        ui->killButton->setText("You dead!");
+        ui->killButton->setDisabled(true);
+    }
+    else {
+        ui->killButton->setDisabled(false);
+    }
+
 }
