@@ -14,7 +14,7 @@ comm_client::comm_client(QObject *parent) : QObject(parent)
 
 void comm_client::doListen(quint16 client_port) {
     socket = new QUdpSocket(this);
-  qDebug() << "binding...";
+    qDebug() << "binding...";
     socket->bind(QHostAddress::Any, client_port);
     connect(socket, SIGNAL(readyRead()), this, SLOT(readMessage()));
 
@@ -46,35 +46,22 @@ void comm_client::readMessage()
 {
     // when data comes in
     while (socket->hasPendingDatagrams()) {
+        QByteArray message;
+        message.resize(socket->pendingDatagramSize());
 
+        QHostAddress sender_ip;
+        quint16 sender_port;
+        socket->readDatagram(message.data(), message.size(), &sender_ip, &sender_port);
 
-    QByteArray buffer;
-    buffer.resize(socket->pendingDatagramSize());
+        qDebug() << "reading...";
 
-    QHostAddress sender;
-    quint16 senderPort;
+        QList<QByteArray> message_list = message.split('\n');
+        qDebug() << message_list;
 
-    // qint64 QUdpSocket::readDatagram(char * data, qint64 maxSize,
-    //                 QHostAddress * address = 0, quint16 * port = 0)
-    // Receives a datagram no larger than maxSize bytes and stores it in data.
-    // The sender's host address and port is stored in *address and *port
-    // (unless the pointers are 0).
-
-    socket->readDatagram(buffer.data(), buffer.size(),
-                         &sender, &senderPort);
-    QByteArray message = socket->readAll();
-
-    qDebug() << "reading...";
-
-    QList<QByteArray> message_list= message.split('\n');
-    qDebug() << message_list;
-
-    QJsonDocument json_document;
-    QJsonObject json_object;
-    QJsonValue status, description;
-
-    for (int i = 0; i < message_list.size()-1; i++) {
-        json_document = QJsonDocument::fromJson(message_list.at(i));
+        QJsonDocument json_document;
+        QJsonObject json_object;
+        QJsonValue status, description;
+        json_document = QJsonDocument::fromJson(message_list.at(0));
         json_object = json_document.object();
 
         // Cari tau dulu ini respon apa method
@@ -100,9 +87,9 @@ void comm_client::readMessage()
             method = json_object.value("method");
             if (method == "prepare_proposal"){
                 qDebug() <<"masuk sih";
-                emit on_accept_prepare_proposal(json_object,sender,senderPort);
+                emit on_accept_prepare_proposal(json_object,sender_ip,sender_port);
             } else if (method == "accept_proposal"){
-                emit on_accept_accept_proposal(json_object,sender,senderPort);
+                emit on_accept_accept_proposal(json_object,sender_ip,sender_port);
             }else if (method == "vote_now") {
                 QJsonObject tempvote;
                 QString phase = json_object.value("phase").toString();
@@ -127,7 +114,6 @@ void comm_client::readMessage()
             }
           }
         }
-    }
     }
 }
 

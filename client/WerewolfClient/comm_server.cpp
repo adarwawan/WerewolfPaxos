@@ -288,6 +288,11 @@ void comm_server::readMessage()
             else if (method == "game_over") {
                 qDebug() << "ini game over";
                 emit on_game_over(json_object);
+            } else if (method == "kpu_selected") {
+                /* KPU has been selected */
+                kpu_id = json_object.value("kpu_id").toInt();
+
+                emit on_kpu_is_selected();
             }
         }
     }

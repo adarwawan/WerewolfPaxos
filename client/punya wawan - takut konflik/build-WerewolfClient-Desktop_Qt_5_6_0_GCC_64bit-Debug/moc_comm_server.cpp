@@ -38,8 +38,8 @@ QT_MOC_LITERAL(5, 48, 14), // "on_get_clients"
 QT_MOC_LITERAL(6, 63, 8), // "on_start"
 QT_MOC_LITERAL(7, 72, 14), // "on_changephase"
 QT_MOC_LITERAL(8, 87, 18), // "on_kpu_is_selected"
-QT_MOC_LITERAL(9, 106, 12), // "on_game_over"
-QT_MOC_LITERAL(10, 119, 11), // "on_vote_now"
+QT_MOC_LITERAL(9, 106, 11), // "on_vote_now"
+QT_MOC_LITERAL(10, 118, 12), // "on_game_over"
 QT_MOC_LITERAL(11, 131, 9), // "connected"
 QT_MOC_LITERAL(12, 141, 12), // "disconnected"
 QT_MOC_LITERAL(13, 154, 11), // "sendMessage"
@@ -50,7 +50,7 @@ QT_MOC_LITERAL(15, 174, 11) // "readMessage"
     "comm_server\0on_fail_or_error\0\0on_login\0"
     "on_ready\0on_get_clients\0on_start\0"
     "on_changephase\0on_kpu_is_selected\0"
-    "on_game_over\0on_vote_now\0connected\0"
+    "on_vote_now\0on_game_over\0connected\0"
     "disconnected\0sendMessage\0message\0"
     "readMessage"
 };
@@ -77,8 +77,8 @@ static const uint qt_meta_data_comm_server[] = {
        6,    0,   85,    2, 0x06 /* Public */,
        7,    1,   86,    2, 0x06 /* Public */,
        8,    0,   89,    2, 0x06 /* Public */,
-       9,    1,   90,    2, 0x06 /* Public */,
-      10,    0,   93,    2, 0x06 /* Public */,
+       9,    0,   90,    2, 0x06 /* Public */,
+      10,    1,   91,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
       11,    0,   94,    2, 0x0a /* Public */,
@@ -94,8 +94,8 @@ static const uint qt_meta_data_comm_server[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QJsonObject,    2,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QJsonObject,    2,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QJsonObject,    2,
 
  // slots: parameters
     QMetaType::Void,
@@ -119,8 +119,8 @@ void comm_server::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 4: _t->on_start(); break;
         case 5: _t->on_changephase((*reinterpret_cast< QJsonObject(*)>(_a[1]))); break;
         case 6: _t->on_kpu_is_selected(); break;
-        case 7: _t->on_game_over((*reinterpret_cast< QJsonObject(*)>(_a[1]))); break;
-        case 8: _t->on_vote_now(); break;
+        case 7: _t->on_vote_now(); break;
+        case 8: _t->on_game_over((*reinterpret_cast< QJsonObject(*)>(_a[1]))); break;
         case 9: _t->connected(); break;
         case 10: _t->disconnected(); break;
         case 11: _t->sendMessage((*reinterpret_cast< QJsonObject(*)>(_a[1]))); break;
@@ -180,15 +180,15 @@ void comm_server::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             }
         }
         {
-            typedef void (comm_server::*_t)(QJsonObject );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&comm_server::on_game_over)) {
+            typedef void (comm_server::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&comm_server::on_vote_now)) {
                 *result = 7;
                 return;
             }
         }
         {
-            typedef void (comm_server::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&comm_server::on_vote_now)) {
+            typedef void (comm_server::*_t)(QJsonObject );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&comm_server::on_game_over)) {
                 *result = 8;
                 return;
             }
@@ -277,15 +277,15 @@ void comm_server::on_kpu_is_selected()
 }
 
 // SIGNAL 7
-void comm_server::on_game_over(QJsonObject _t1)
+void comm_server::on_vote_now()
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 7, _a);
+    QMetaObject::activate(this, &staticMetaObject, 7, Q_NULLPTR);
 }
 
 // SIGNAL 8
-void comm_server::on_vote_now()
+void comm_server::on_game_over(QJsonObject _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 8, Q_NULLPTR);
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 QT_END_MOC_NAMESPACE

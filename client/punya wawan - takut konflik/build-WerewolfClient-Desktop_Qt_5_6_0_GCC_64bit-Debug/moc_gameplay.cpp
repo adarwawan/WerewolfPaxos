@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_gameplay_t {
-    QByteArrayData data[12];
-    char stringdata0[159];
+    QByteArrayData data[16];
+    char stringdata0[229];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,13 +40,19 @@ QT_MOC_LITERAL(7, 86, 9), // "sender_ip"
 QT_MOC_LITERAL(8, 96, 11), // "sender_port"
 QT_MOC_LITERAL(9, 108, 18), // "do_proposal_accept"
 QT_MOC_LITERAL(10, 127, 19), // "do_set_kpu_selected"
-QT_MOC_LITERAL(11, 147, 11) // "do_set_rule"
+QT_MOC_LITERAL(11, 147, 11), // "do_set_rule"
+QT_MOC_LITERAL(12, 159, 21), // "on_killButton_clicked"
+QT_MOC_LITERAL(13, 181, 12), // "do_game_over"
+QT_MOC_LITERAL(14, 194, 22), // "on_leaveButton_clicked"
+QT_MOC_LITERAL(15, 217, 11) // "do_vote_now"
 
     },
     "gameplay\0do_changephase\0\0do_populate_players\0"
     "do_proposal_prepare\0message\0QHostAddress\0"
     "sender_ip\0sender_port\0do_proposal_accept\0"
-    "do_set_kpu_selected\0do_set_rule"
+    "do_set_kpu_selected\0do_set_rule\0"
+    "on_killButton_clicked\0do_game_over\0"
+    "on_leaveButton_clicked\0do_vote_now"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +62,7 @@ static const uint qt_meta_data_gameplay[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,12 +70,16 @@ static const uint qt_meta_data_gameplay[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   44,    2, 0x08 /* Private */,
-       3,    0,   47,    2, 0x08 /* Private */,
-       4,    3,   48,    2, 0x08 /* Private */,
-       9,    3,   55,    2, 0x08 /* Private */,
-      10,    0,   62,    2, 0x08 /* Private */,
-      11,    1,   63,    2, 0x08 /* Private */,
+       1,    1,   64,    2, 0x08 /* Private */,
+       3,    0,   67,    2, 0x08 /* Private */,
+       4,    3,   68,    2, 0x08 /* Private */,
+       9,    3,   75,    2, 0x08 /* Private */,
+      10,    0,   82,    2, 0x08 /* Private */,
+      11,    1,   83,    2, 0x08 /* Private */,
+      12,    0,   86,    2, 0x08 /* Private */,
+      13,    1,   87,    2, 0x08 /* Private */,
+      14,    0,   90,    2, 0x08 /* Private */,
+      15,    0,   91,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QJsonObject,    2,
@@ -78,6 +88,10 @@ static const uint qt_meta_data_gameplay[] = {
     QMetaType::Void, QMetaType::QJsonObject, 0x80000000 | 6, QMetaType::UShort,    5,    7,    8,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QJsonObject,    5,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QJsonObject,    2,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -94,6 +108,10 @@ void gameplay::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 3: _t->do_proposal_accept((*reinterpret_cast< QJsonObject(*)>(_a[1])),(*reinterpret_cast< QHostAddress(*)>(_a[2])),(*reinterpret_cast< quint16(*)>(_a[3]))); break;
         case 4: _t->do_set_kpu_selected(); break;
         case 5: _t->do_set_rule((*reinterpret_cast< QJsonObject(*)>(_a[1]))); break;
+        case 6: _t->on_killButton_clicked(); break;
+        case 7: _t->do_game_over((*reinterpret_cast< QJsonObject(*)>(_a[1]))); break;
+        case 8: _t->on_leaveButton_clicked(); break;
+        case 9: _t->do_vote_now(); break;
         default: ;
         }
     }
@@ -124,13 +142,13 @@ int gameplay::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 10;
     }
     return _id;
 }

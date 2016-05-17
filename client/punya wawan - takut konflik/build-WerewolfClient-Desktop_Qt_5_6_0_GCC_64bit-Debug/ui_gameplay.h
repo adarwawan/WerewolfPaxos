@@ -50,6 +50,7 @@ public:
     QLabel *phaseText;
     QLabel *daysText;
     QLabel *friendText;
+    QPushButton *leaveButton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *gameplay)
@@ -123,6 +124,9 @@ public:
         friendText = new QLabel(centralwidget);
         friendText->setObjectName(QStringLiteral("friendText"));
         friendText->setGeometry(QRect(350, 100, 161, 17));
+        leaveButton = new QPushButton(centralwidget);
+        leaveButton->setObjectName(QStringLiteral("leaveButton"));
+        leaveButton->setGeometry(QRect(390, 210, 141, 26));
         gameplay->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(gameplay);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -156,6 +160,7 @@ public:
         phaseText->setText(QString());
         daysText->setText(QString());
         friendText->setText(QString());
+        leaveButton->setText(QString());
     } // retranslateUi
 
 };
