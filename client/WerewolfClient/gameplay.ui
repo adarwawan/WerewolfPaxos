@@ -272,6 +272,19 @@ p, li { white-space: pre-wrap; }
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="leaveButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>210</y>
+      <width>141</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>leaveButton</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -8,7 +8,7 @@ gameplay::gameplay(QWidget *parent) :
     ui->setupUi(this);
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), &conn_client, SLOT(prepare_proposal()));
-
+    ui->leaveButton->setDisabled(true);
 }
 
 gameplay::~gameplay()
@@ -197,7 +197,17 @@ void gameplay::on_killButton_clicked()
 
 void gameplay::do_game_over(QJsonObject message) {
     ui->killButton->setDisabled(true);
+    ui->leaveButton->setDisabled(false);
+    ui->leaveButton->setText("Leave Game");
     ui->killButton->setText("GAME OVER");
     QString winner = message.value("winner").toString();
     ui->statusbar->showMessage("Winner : " + winner);
+}
+
+
+void gameplay::on_leaveButton_clicked()
+{
+    QJsonObject json_object;
+    json_object.insert("method", "leave");
+    connection.sendMessage(json_object);
 }
